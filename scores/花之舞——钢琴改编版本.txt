@@ -1,0 +1,1295 @@
+#1倍速
+#开头：
+208 vd
+208
+208 zs
+208
+208 vh
+208
+208 bs
+208
+208 nd
+208
+208 s
+208
+208 vn
+208
+208 s
+208
+208 bd
+208
+208 xs
+208
+208 bh
+208
+208 ns
+208
+208 md
+208
+208 s
+208
+208 n
+208
+208 s
+208
+208 nd
+208
+208 cs
+208
+208 nh
+208
+208 ms
+208
+208 ad
+208
+208 s
+208
+208 n
+208
+208 s
+208
+208 nd
+208
+208 se
+208
+208 hy
+208
+208 su
+208
+208 dq
+208
+208 su
+208
+208 ny
+208
+208 se
+208
+208 vnd
+208
+208 zs
+208
+208 vh
+208
+208 bs
+208
+208 nd
+208
+208 s
+208
+208 vn
+208
+208 s
+208
+208 bmd
+208
+208 xs
+208
+208 bh
+208
+208 ns
+208
+208 md
+208
+208 s
+208
+208 n
+208
+208 s
+208
+208 nd
+208
+208 cs
+208
+208 nh
+208
+208 ms
+208
+208 ad
+208
+208 s
+208
+208 nh
+208
+208 s
+208
+208 znadh
+208 cqe
+208
+208
+208
+208
+208
+208
+208
+208
+208
+208
+208
+208
+208
+208
+208 d
+208
+208 zv
+208
+208 n
+208 ad
+208 bms
+208 x
+208
+208 bsg
+208
+208
+208 cbs
+208 xm
+208 j
+208 ch
+208 m
+208 ngh
+208
+208 c
+208 ne
+208
+208 c
+208 vfh
+208
+208 z
+208 vhe
+208
+208 z
+208 bgw
+208 xw
+208 we
+208 bj
+208 xg
+208
+208 nh
+208 c
+208
+208 n
+208 m
+208 a
+208
+208 zcq
+208 bj
+208
+208 dg
+208 vnadh
+208
+208 z
+208 z
+208 n
+208 cadq
+208 xbmsw
+208 xg
+208
+208 zbsgq
+208 j
+208
+208 csj
+208 xmg
+208
+208 cmh
+208 bjw
+208
+208 nadqe
+208 csw
+208 znajq
+208 h
+208 mj
+208 vngh
+208 e
+208 zwe
+208 vah
+208 e
+208 zwe
+208 bshw
+208 xwe
+208 e
+208 bh
+208 xjwe
+208 e
+208 xndhq
+208 cqe
+208 e
+208 nshe
+208 mq
+208 e
+208 zahe
+208 q
+208 he
+208
+208 cd
+208 nadhq
+208 cd
+208 zcnmdj
+208 xaq
+208 cd
+208 nadhjw
+208 bmsgj
+208 xm
+208 vnmh
+208 cbmgj
+208 xbmd
+208 mg
+208 vnafh
+208 zvag
+208 zba
+208 zvnahq
+208 vq
+208 nar
+208 zbadge
+208 zbfw
+208 xcbadq
+208 b
+208 cdg
+208 bnsfgh
+208 n
+208 xvd
+208 xcvns
+208 zn
+208 vnmfwr
+208 nade
+208 c
+208 cnmsw
+208 zaq
+208 cnmde
+208 zcb
+#第2段：
+208 vsw
+208 vaq
+208 v
+208 vmj
+208 znh
+208 v
+208 cbmsg
+208 nh
+208 cbmj
+208
+208 cg
+208 cnah
+208 c
+208 cmd
+208 zcmaq
+208 cj
+208 zcnsh
+208 xbmg
+208 xm
+208 nms
+208 bmj
+208 xcbmgh
+208 bm
+208 vnaf
+208 zbq
+208 zb
+208 zvner
+208 vaw
+208 znr
+208 zcbage
+208 zvw
+208 zg
+208 cgq
+208 zcj
+208 xvbngh
+208
+208 xsf
+208 cvnsdw
+208 ae
+208 xvmwr
+208 cnade
+208 csr
+208 nmdfwe
+208 zdq
+208 casjq
+208 zme
+208 xvnw
+208 zvdjq
+208 nh
+208 bmdg
+208 xcdhj
+208 bg
+208 cnhq
+208 cj
+208 g
+208 nh
+208
+208 vnadq
+208
+208 zh
+208 vf
+208 znh
+208 vnadqe
+208 bmsw
+208
+208 xg
+208 bsgq
+208 w
+208 jq
+208 cmsj
+208 mg
+208 j
+208 xbdh
+208 vmgj
+208 gr
+208 cnahe
+208 zcw
+208
+208 nqe
+208 cg
+208 vnfh
+208
+208 zq
+208 zahqe
+208 w
+208 ze
+208 xcbmgw
+208
+208 zwet
+208 xbj
+208
+208 xgj
+208 znhw
+208 c
+208
+208 nhq
+208 m
+208
+208 znagj
+208 c
+208
+208 cndg
+208 d
+208
+208 vnadh
+208 z
+208 h
+208 n
+208 aq
+208 msdgwe
+208
+208 xg
+208 bsgj
+208 q
+208 hj
+208 csg
+208 mgr
+208
+208 cshe
+208 j
+208
+208 nadhqw
+208 csq
+208 j
+208 naghjq
+208 cmj
+208 xg
+208 znafhe
+208 zw
+208 vhe
+208 e
+208 zw
+208 cbmhet
+208 e
+208 xwe
+208 zbhq
+208 e
+208 jwe
+208 nadhq
+208 cqe
+208 e
+208 xnh
+208 mqe
+208 e
+208 znah
+208 qe
+208 e
+208 bdh
+208 d
+208
+208 znadh
+208 zf
+208 vnaq
+208 znw
+208 ae
+208 bmsdqw
+208 g
+208 xq
+208 bmsgj
+208 q
+208 mhj
+208 cbmsg
+208 d
+208 xbmje
+208 cmsh
+208 xbmqw
+208 mgj
+208 cnah
+208 cjq
+208 t
+208 zcnet
+208 cw
+208 q
+208 xvnfh
+208 zcq
+208 xnahwe
+208 zh
+208 xw
+208 cmgjqw
+208 q
+208 xbwe
+208 bmgjwt
+208 w
+208 xgjq
+208 zcnh
+208 j
+208 cqw
+208 nr
+208 mwe
+208 q
+208 ae
+208 cqw
+208 h
+208 xngh
+208 dj
+208 g
+208 zvnadh
+208 zj
+208 q
+208 zvngw
+208 naq
+208 xbmsdj
+208 t
+208 xe
+208 bmsgwe
+208 vq
+208 chj
+208 cbmsq
+208 e
+208 xmgqw
+208 cbmhw
+208 bmjwt
+208 xj
+208 znadq
+208 zxcsqe
+208 mjy
+208 nadw
+208 zmhwt
+208 xgq
+208 vnafhe
+208 znw
+208 e
+208 nmadhe
+208 zw
+208 bmshwe
+208 ge
+208 zjw
+208 mshqwe
+208 zet
+208 bmweu
+208 nahqy
+208 e
+208 cqe
+208 nh
+208 mqe
+208 e
+208 zah
+208 qe
+208 e
+208 cdh
+208 d
+208
+208 ndhq
+208 zcj
+208 dj
+208 xnmdqw
+208 zcbw
+208 sdgjty
+208 mw
+208 xvnhq
+208 cbmgj
+208 mq
+208 mdgj
+208 vafh
+208 za
+208 zbnag
+#第3段：
+208 vnh
+208 baj
+208 znaqr
+208 zadge
+208 zbafgw
+208 ag
+208 zcbdq
+208 xcdhj
+208 g
+208 xnsfgh
+208 vd
+208 cng
+208 xcnshj
+208 vmfq
+208 cnader
+208 cd
+208 csh
+208 zcawe
+208 cmq
+208 zndj
+208 vbmsgh
+208 vr
+208 vaqe
+208 mj
+208 vmq
+208 zvngj
+208 cbmg
+208 cndf
+208 cg
+208 bmh
+208 cjq
+208 w
+208 zcnaey
+208 cmq
+208 ch
+208 zcmadh
+208 nsq
+208 ce
+208 xbmgw
+208 xnj
+208 bmqw
+208 zmt
+208 cq
+208 zvbnhj
+208 zr
+208 zbmwe
+208 zvnq
+208 znj
+208 zvnagh
+208 zcbg
+208 zxvbhj
+208 zbq
+208 zcbw
+208 zcber
+208 bt
+208 xvny
+208 xnfqr
+208 ndh
+208 vnasfh
+208 xvmq
+208 r
+208 cnsder
+208 nde
+208 nmdfqw
+208 xsw
+208 zcar
+208 xvnmy
+208 u
+208 zvdqy
+208 cbmt
+208 y
+208 vndtu
+208 zcny
+208
+208 ce
+208 nqy
+208
+208
+208 vnhq
+208 naqy
+208 dw
+208 vnahey
+208 dq
+208 he
+208 bmsjwt
+208 du
+208 cbhjq
+208 dw
+208 q
+208 nhjtu
+208 de
+208 dqu
+208 cmjw
+208 dt
+208 dgwe
+208 nahq
+208 aq
+208 agqu
+208 cbdt
+208 agqu
+208 aq
+208 vnhr
+208 naer
+208 dq
+208 vnahqu
+208 du
+208 hy
+208 bmsjet
+208 de
+208 cbhjw
+208 su
+208 qy
+208 nhjty
+208 ae
+208 qu
+208 cmaqw
+208 se
+208 det
+208 zawy
+208 st
+208 qe
+208 cdu
+208 hqu
+208 t
+208 vfhy
+208 nart
+208 dt
+208 vafhyu
+208 dq
+208 he
+208 bsgjwt
+208 dq
+208 hu
+208 cdjtu
+208 q
+208 nhjyu
+208 de
+208 qe
+208 cdjw
+208 du
+208 dgqy
+208 nhy
+208 ae
+208 agqy
+208 cadu
+208 agty
+208 aw
+208 vdhy
+208 naey
+208 du
+208 ahq
+208 adwe
+208 hq
+208 bmsjwt
+208 du
+208 hq
+208 cbsjwt
+208 q
+208 nhju
+208
+208 c
+208 n
+208
+208 m
+208 ba
+208
+208 c
+208 n
+208
+208 h
+208 vnahy
+208 znaey
+208 fu
+208 vnahq
+208 zafwe
+208 vht
+208 bmsjqu
+208 xdw
+208 ht
+208 cbmdju
+208 xbqu
+208 mahjty
+208 cde
+208 cnq
+208 nadjyu
+208 cdu
+208 bgq
+208 nadhyu
+208 ca
+208 znagyu
+208 cnadt
+208 zae
+208 bnagqw
+208 vnahq
+208 zcnary
+208 zft
+208 vnahy
+208 zafqu
+208 nhe
+208 bmsjwe
+208 zdt
+208 hy
+208 cbmsju
+208 xqu
+208 nahjty
+208 cae
+208 zcq
+208 cnawyu
+208 su
+208 zcqe
+208 cadwey
+208 st
+208 zcnqe
+208 badgu
+208 xq
+208 zchtu
+208 vafhr
+208 znaer
+208 cfq
+208 vafhy
+208 zcafqu
+208 vhy
+208 bsgjwt
+208 zdq
+208 hu
+208 sdgjqu
+208 xq
+208 jt
+208 nadhey
+208 cq
+208 zadjyu
+208 du
+208 bgq
+208 badhyu
+208 zay
+208 bnagqe
+208 cnadw
+208 xat
+208 zbagqw
+208 vnahq
+208 zary
+208 ct
+208 nadhy
+208 zafqu
+208 zhy
+208 xmsjt
+208 bmsdqw
+208 zhu
+208 xbmsju
+208 zqu
+208 mjt
+208 cnahey
+208 q
+208 yu
+208 q
+208 e
+#第4段：
+208 y
+208
+208
+208 xbm
+208
+208 t
+208 zvnhy
+208 nu
+208 zafe
+208 znahe
+208 zafqw
+208 he
+208 xbmjw
+208 xsdtu
+208 hw
+208 msdjtu
+208 xq
+208 ju
+208 nadhwy
+208 cqe
+208 zadjyu
+208 d
+208 bgu
+208 badhet
+208 aw
+208 ngy
+208 zbadqw
+208 aw
+208 zbagqu
+208 vnahy
+208 u
+208 zafqy
+208 zadhy
+208 zafu
+208 zhy
+208 bmsjt
+208 xdwu
+208 h
+208 xsgjtu
+208 xqe
+208 xjw
+208 nadhey
+208 cqy
+208 au
+208 zcnswe
+208 zce
+208 zdhwey
+208 su
+208 cq
+208 cndty
+208
+208 zchu
+208 zafhr
+208 znq
+208 vbafrt
+208 znahy
+208 zmafu
+208 nhy
+208 bmsjt
+208 xmsdwu
+208 zh
+208 xbmdju
+208 xqt
+208 mj
+208 nadhey
+208 cq
+208 ndq
+208 cmdjwu
+208 bmgt
+208 badheu
+208 car
+208 nge
+208 zbadqw
+208 xau
+208 cbagty
+208 znahy
+208 vu
+208 zcaqe
+208 zvnhy
+208 cvafwe
+208 zhq
+208 xbmju
+208 xbsdqw
+208 mht
+208 xbmju
+208 zxmsqw
+208 bju
+208 cnahyu
+208 zcq
+208 nw
+208 xcnet
+208 nu
+208 sdty
+208 h
+208 w
+208 cbaey
+208
+208 t
+208 znahy
+208 nhe
+208 afqryu
+208 zahqy
+208 aqe
+208 cfhwry
+208 xmsju
+208 xsdwe
+208 zhy
+208 xbmju
+208 zbdqeu
+208 jtu
+208 nadhey
+208 cq
+208 zdeu
+208 nsdjeu
+208 bgqt
+208 zadhey
+208 aq
+208 ngtu
+208 adqety
+208 xaqe
+208 cbgwt
+208 vbahqy
+208 cy
+208 zafqr
+208 znahy
+208 aqu
+208 fhqery
+208 bsjwu
+208 zxdet
+208 hy
+208 xbmju
+208 zxsqwu
+208 bjtu
+208 nahqey
+208 zcq
+208 aqu
+208 znswyu
+208 zcqe
+208 nde
+208 nadety
+208 zce
+208 cdgqeu
+208 zdqe
+208 xeu
+208 cafhty
+208 chey
+208 zaqry
+208 zfhey
+208 qy
+208 caqery
+208 xgjwu
+208 xswetu
+208 zqy
+208 xsgwu
+208 zbsqet
+208 u
+208 nadhy
+208 cdqe
+208 e
+208 bdhqeu
+208 bgt
+208 zet
+208 nadgqy
+208 bhtu
+208 cnadqe
+208 zqe
+208 bgt
+208 nahqty
+208 hry
+208 zaqry
+208 zafry
+208 qy
+208 zaqry
+208 xmseu
+208 zxswer
+208 wy
+208 xsgqu
+208 zxsqwr
+208 u
+208 nadhy
+208 xcu
+208 ny
+208 xcty
+208 nu
+208 st
+208 cdhy
+208 w
+208 zcbaqe
+208
+208 zcndj
+208 zadghq
+208 de
+208 zadjeu
+208 zadhq
+208 de
+208 bdgwey
+208 mgjtu
+208 mjw
+208 fhjqyu
+208 xdgtu
+208 xbdqeu
+208 gt
+208 vnahy
+208 vnagqt
+208 baqt
+208 nahqyu
+208 zvnaq
+208 vnaqr
+208 adgqet
+208 zafwr
+208 zadqet
+208 u
+208 zbdey
+208 sfgrty
+208 nht
+208 zvnfe
+208 dfhwty
+208 znahu
+208 nmfhqr
+208 nade
+208 znhe
+208 sdhwey
+208 xnaq
+208 ndhqeu
+208 bht
+208 vnswy
+208 vafqer
+208 vfq
+208 vmfjqu
+208 znahu
+208 zvft
+208 cbdget
+208 cbmhr
+208 cdt
+208 cbmjyu
+208 cbdq
+208 znaqwy
+208 cde
+208 zcmj
+208 cadqey
+208 cdy
+208 cnsdwe
+208 bmsjw
+208 xmt
+208 bnmhqu
+208 xmsgw
+208 xcbdqt
+208 bgu
+208 vnahy
+208 zbager
+208 zaw
+208 zafhq
+208 zvaqyu
+208 znat
+208 vbagty
+208 zvfu
+#第5段：
+208 zaq
+208 xbadwe
+208 zcbdr
+208 bnfgty
+208 cr
+208 xnfqr
+208 dfwery
+208 aqy
+208 zvmfjr
+208 cnade
+208 cswr
+208 mdfwer
+208 xadqe
+208 zsw
+208 adjqry
+208 xnshy
+208 zbadeu
+208 y
+208 cbmgt
+208 xbdeyu
+208 nt
+208 zcnhy
+208 zce
+208
+208 cnqy
+208
+208 zdhqy
+208 zcdeu
+208 zadjw
+208 cdhqey
+208 zcdet
+208 cbdgwu
+208 bgqtu
+208 xmjy
+208 nmfweu
+208 xgjwy
+208 xbwt
+208 dgqetu
+208 zahry
+208 ahjqty
+208 zbgqe
+208 zfhwr
+208 nmajqe
+208 zvnhq
+208 gjqtyu
+208 zvfwt
+208 zbaqy
+208 bgqwru
+208 zcdqe
+208 fgjqru
+208 ht
+208 zfwry
+208 fhqwer
+208 znaqe
+208 zvmjw
+208 adgqeu
+208 qe
+208 bmsdwe
+208 zdhqe
+208 xmjey
+208 mhjwet
+208 vafwy
+208 zcnqru
+208 zcmey
+208 zfhwt
+208 vnjqyu
+208 znhey
+208 sfgery
+208 xvde
+208 cbsw
+208 adgjqu
+208 cnht
+208 cbdge
+208 dhqeyu
+208 zadjw
+208 cdhqey
+208 zcdet
+208 zbdgw
+208 dgqwtu
+208 xmjy
+208 nmfweu
+208 xgjwt
+208 xbwt
+208 dgqetu
+208 zahry
+208 ahjqty
+208 zbgqe
+208 zfhwr
+208 nmajqe
+208 zvmhq
+208 zgqtu
+208 afjwty
+208 znaqy
+208 bgqweu
+208 cdq
+208 cbgju
+208 nfhqrt
+208 xfwry
+208 fhqwer
+208 cbaqe
+208 zvmjw
+208 ndgqeu
+208 cmqe
+208 nmsfwr
+208 xdhqe
+208 xmswy
+208 adjqet
+208 xhqry
+208 qey
+208 badqey
+208 cdhey
+208 xbdqey
+208 nqey
+208 chqey
+208
+208
+208
+208 cndhe
+208
+208
+208
+208
+208 h
+208
+208
+208
+208
+208
+208
+208
+208
+208 vd
+208
+208 zs
+208
+208 vh
+208
+208 bs
+208
+208 nd
+208
+208 s
+208
+208 vn
+208
+208 s
+208
+208 bd
+208
+208 xs
+208
+208 bh
+208
+208 ns
+208
+208 md
+208
+208 s
+208
+208 n
+208
+208 s
+208
+208 nd
+208 jw
+208 ce
+208
+208 nh
+208
+208 ms
+208
+208 ad
+208
+208 s
+208
+208 n
+208
+208 s
+208
+208 nd
+208
+208 se
+208
+208 hy
+208
+208 su
+208
+208 dq
+208
+208 su
+208
+208 ny
+208
+208 se
+208
+208 vd
+208
+208 zs
+208
+208 vh
+208
+208 bs
+208
+208 nd
+208
+208 s
+208
+208 vn
+208
+208 s
+208
+208 bd
+208
+208 xs
+208
+208 bh
+208
+208 ns
+208
+208 md
+208
+208 s
+208
+208 n
+208
+208 s
+208
+208 nd
+208 jw
+208 ce
+208
+208 nh
+208
+208 ms
+208
+208 ad
+208
+208 s
+208
+208 n
+208
+208 s
+208
+208 d
+208
+208 s
+208
+208 h
+208
+208 s
+208
+208 d
+208
+208 s
+208
+208 n
+#第6段：
+208
+208 s
+208
+208
+208
+208
+208
+208
+208

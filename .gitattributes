@@ -1,0 +1,18 @@
+# Windows 批处理必须保持原始字节（GBK 编码 + CRLF 换行），禁止换行符转换。
+# 否则在 core.autocrlf=false 的机器上检出成 LF，cmd.exe 会解析异常。
+*.bat  -text
+*.cmd  -text
+
+# 二进制资源
+*.mid   -text
+*.midi  -text
+*.wav   -text
+*.png   -text
+
+# 文本文件：入库统一 LF（本地检出仍由 core.autocrlf 决定）
+*.py    text
+*.md    text
+*.txt   text
+*.json  text
+*.yml   text
+*.yaml  text

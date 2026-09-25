@@ -1,0 +1,33 @@
+# ============ Python ============
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# ============ 编辑器 / IDE ============
+.idea/
+.vscode/
+*.iml
+*.suo
+*.user
+
+# ============ AI 助手本地状态（不属于项目内容）============
+.proxyai/
+.workbuddy/
+
+# ============ 试听对比音频 ============
+# 25 个 wav 合计 139 MB，只作本地诊断用；仓库里保留同目录的对照稿 .txt
+试听对比/*.wav
+试听对比/**/*.wav
+
+# ============ 程序自动生成的曲谱备份 ============
+# midi_to_score.py 覆盖已有曲谱前会备份成 xxx.txt.bak
+*.bak
+
+# ============ 系统 ============
+Thumbs.db
+Desktop.ini
+.DS_Store
