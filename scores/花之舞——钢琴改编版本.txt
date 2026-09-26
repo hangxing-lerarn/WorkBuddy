@@ -1,119 +1,119 @@
 #1倍速
 #开头：
-208 vd
+208 vd 406
 208
-208 zs
+208 zs 406
 208
-208 vh
+208 vh 406
 208
-208 bs
+208 bs 406
 208
-208 nd
+208 nd 406
 208
-208 s
+208 s 406
 208
-208 vn
+208 vn 406
 208
-208 s
+208 s 406
 208
-208 bd
+208 bd 406
 208
-208 xs
+208 xs 406
 208
-208 bh
+208 bh 406
 208
-208 ns
+208 ns 406
 208
-208 md
+208 md 406
 208
-208 s
+208 s 406
 208
-208 n
+208 n 406
 208
-208 s
+208 s 406
 208
-208 nd
+208 nd 406
 208
-208 cs
+208 cs 406
 208
-208 nh
+208 nh 406
 208
-208 ms
+208 ms 406
 208
-208 ad
+208 ad 406
 208
-208 s
+208 s 406
 208
-208 n
+208 n 406
 208
-208 s
+208 s 406
 208
-208 nd
+208 nd 406
 208
-208 se
+208 se 406
 208
-208 hy
+208 hy 406
 208
-208 su
+208 su 406
 208
-208 dq
+208 dq 406
 208
-208 su
+208 su 406
 208
-208 ny
+208 ny 406
 208
-208 se
+208 se 406
 208
-208 vnd
+208 vnd 406
 208
-208 zs
+208 zs 406
 208
-208 vh
+208 vh 406
 208
-208 bs
+208 bs 406
 208
-208 nd
+208 nd 406
 208
-208 s
+208 s 406
 208
-208 vn
+208 vn 406
 208
-208 s
+208 s 406
 208
-208 bmd
+208 bmd 406
 208
-208 xs
+208 xs 406
 208
-208 bh
+208 bh 406
 208
-208 ns
+208 ns 406
 208
-208 md
+208 md 406
 208
-208 s
+208 s 406
 208
-208 n
+208 n 406
 208
-208 s
+208 s 406
 208
-208 nd
+208 nd 406
 208
-208 cs
+208 cs 406
 208
-208 nh
+208 nh 406
 208
-208 ms
+208 ms 406
 208
-208 ad
+208 ad 406
 208
-208 s
+208 s 406
 208
-208 nh
+208 nh 406
 208
-208 s
+208 s 406
 208
-208 znadh
-208 cqe
+208 znadh 198
+208 cqe 2000
 208
 208
 208
@@ -128,1028 +128,1028 @@
 208
 208
 208
-208 d
+208 d 406
 208
-208 zv
+208 zv 406
 208
-208 n
-208 ad
-208 bms
-208 x
+208 n 150
+208 ad 150
+208 bms 198
+208 x 406
 208
-208 bsg
+208 bsg 600
 208
 208
-208 cbs
-208 xm
-208 j
-208 ch
-208 m
-208 ngh
+208 cbs 198
+208 xm 198
+208 j 150
+208 ch 198
+208 m 198
+208 ngh 406
 208
-208 c
-208 ne
+208 c 198
+208 ne 406
 208
-208 c
-208 vfh
+208 c 198
+208 vfh 406
 208
-208 z
-208 vhe
+208 z 198
+208 vhe 406
 208
-208 z
-208 bgw
-208 xw
-208 we
-208 bj
-208 xg
+208 z 198
+208 bgw 198
+208 xw 198
+208 we 150
+208 bj 198
+208 xg 300
 208
-208 nh
-208 c
+208 nh 198
+208 c 300
 208
-208 n
-208 m
-208 a
+208 n 198
+208 m 198
+208 a 300
 208
-208 zcq
-208 bj
+208 zcq 198
+208 bj 406
 208
-208 dg
-208 vnadh
+208 dg 198
+208 vnadh 406
 208
-208 z
-208 z
-208 n
-208 cadq
-208 xbmsw
-208 xg
+208 z 198
+208 z 198
+208 n 150
+208 cadq 198
+208 xbmsw 198
+208 xg 300
 208
-208 zbsgq
-208 j
+208 zbsgq 198
+208 j 300
 208
-208 csj
-208 xmg
+208 csj 198
+208 xmg 300
 208
-208 cmh
-208 bjw
+208 cmh 198
+208 bjw 300
 208
-208 nadqe
-208 csw
-208 znajq
-208 h
-208 mj
-208 vngh
-208 e
-208 zwe
-208 vah
-208 e
-208 zwe
-208 bshw
-208 xwe
-208 e
-208 bh
-208 xjwe
-208 e
-208 xndhq
-208 cqe
-208 e
-208 nshe
-208 mq
-208 e
-208 zahe
-208 q
-208 he
+208 nadqe 198
+208 csw 198
+208 znajq 198
+208 h 150
+208 mj 198
+208 vngh 198
+208 e 150
+208 zwe 198
+208 vah 198
+208 e 150
+208 zwe 198
+208 bshw 198
+208 xwe 198
+208 e 150
+208 bh 198
+208 xjwe 198
+208 e 150
+208 xndhq 198
+208 cqe 198
+208 e 150
+208 nshe 198
+208 mq 198
+208 e 150
+208 zahe 198
+208 q 150
+208 he 300
 208
-208 cd
-208 nadhq
-208 cd
-208 zcnmdj
-208 xaq
-208 cd
-208 nadhjw
-208 bmsgj
-208 xm
-208 vnmh
-208 cbmgj
-208 xbmd
-208 mg
-208 vnafh
-208 zvag
-208 zba
-208 zvnahq
-208 vq
-208 nar
-208 zbadge
-208 zbfw
-208 xcbadq
-208 b
-208 cdg
-208 bnsfgh
-208 n
-208 xvd
-208 xcvns
-208 zn
-208 vnmfwr
-208 nade
-208 c
-208 cnmsw
-208 zaq
-208 cnmde
-208 zcb
+208 cd 198
+208 nadhq 198
+208 cd 150
+208 zcnmdj 198
+208 xaq 198
+208 cd 150
+208 nadhjw 198
+208 bmsgj 198
+208 xm 150
+208 vnmh 198
+208 cbmgj 198
+208 xbmd 150
+208 mg 150
+208 vnafh 198
+208 zvag 198
+208 zba 150
+208 zvnahq 198
+208 vq 150
+208 nar 150
+208 zbadge 198
+208 zbfw 198
+208 xcbadq 198
+208 b 150
+208 cdg 198
+208 bnsfgh 198
+208 n 150
+208 xvd 150
+208 xcvns 150
+208 zn 150
+208 vnmfwr 198
+208 nade 198
+208 c 150
+208 cnmsw 198
+208 zaq 198
+208 cnmde 198
+208 zcb 150
 #第2段：
-208 vsw
-208 vaq
-208 v
-208 vmj
-208 znh
-208 v
-208 cbmsg
-208 nh
-208 cbmj
+208 vsw 198
+208 vaq 198
+208 v 150
+208 vmj 198
+208 znh 198
+208 v 150
+208 cbmsg 198
+208 nh 198
+208 cbmj 406
 208
-208 cg
-208 cnah
-208 c
-208 cmd
-208 zcmaq
-208 cj
-208 zcnsh
-208 xbmg
-208 xm
-208 nms
-208 bmj
-208 xcbmgh
-208 bm
-208 vnaf
-208 zbq
-208 zb
-208 zvner
-208 vaw
-208 znr
-208 zcbage
-208 zvw
-208 zg
-208 cgq
-208 zcj
-208 xvbngh
+208 cg 198
+208 cnah 198
+208 c 150
+208 cmd 198
+208 zcmaq 198
+208 cj 150
+208 zcnsh 198
+208 xbmg 198
+208 xm 150
+208 nms 198
+208 bmj 198
+208 xcbmgh 198
+208 bm 150
+208 vnaf 198
+208 zbq 198
+208 zb 150
+208 zvner 150
+208 vaw 150
+208 znr 150
+208 zcbage 198
+208 zvw 150
+208 zg 150
+208 cgq 198
+208 zcj 198
+208 xvbngh 406
 208
-208 xsf
-208 cvnsdw
-208 ae
-208 xvmwr
-208 cnade
-208 csr
-208 nmdfwe
-208 zdq
-208 casjq
-208 zme
-208 xvnw
-208 zvdjq
-208 nh
-208 bmdg
-208 xcdhj
-208 bg
-208 cnhq
-208 cj
-208 g
-208 nh
+208 xsf 198
+208 cvnsdw 198
+208 ae 150
+208 xvmwr 198
+208 cnade 198
+208 csr 150
+208 nmdfwe 150
+208 zdq 198
+208 casjq 198
+208 zme 150
+208 xvnw 198
+208 zvdjq 198
+208 nh 150
+208 bmdg 198
+208 xcdhj 198
+208 bg 150
+208 cnhq 198
+208 cj 198
+208 g 150
+208 nh 406
 208
-208 vnadq
+208 vnadq 406
 208
-208 zh
-208 vf
-208 znh
-208 vnadqe
-208 bmsw
+208 zh 198
+208 vf 198
+208 znh 150
+208 vnadqe 150
+208 bmsw 406
 208
-208 xg
-208 bsgq
-208 w
-208 jq
-208 cmsj
-208 mg
-208 j
-208 xbdh
-208 vmgj
-208 gr
-208 cnahe
-208 zcw
+208 xg 198
+208 bsgq 198
+208 w 150
+208 jq 150
+208 cmsj 198
+208 mg 198
+208 j 150
+208 xbdh 198
+208 vmgj 198
+208 gr 150
+208 cnahe 198
+208 zcw 300
 208
-208 nqe
-208 cg
-208 vnfh
+208 nqe 198
+208 cg 198
+208 vnfh 406
 208
-208 zq
-208 zahqe
-208 w
-208 ze
-208 xcbmgw
+208 zq 198
+208 zahqe 198
+208 w 150
+208 ze 198
+208 xcbmgw 406
 208
-208 zwet
-208 xbj
+208 zwet 198
+208 xbj 406
 208
-208 xgj
-208 znhw
-208 c
+208 xgj 198
+208 znhw 198
+208 c 300
 208
-208 nhq
-208 m
+208 nhq 198
+208 m 300
 208
-208 znagj
-208 c
+208 znagj 198
+208 c 300
 208
-208 cndg
-208 d
+208 cndg 198
+208 d 300
 208
-208 vnadh
-208 z
-208 h
-208 n
-208 aq
-208 msdgwe
+208 vnadh 198
+208 z 198
+208 h 198
+208 n 150
+208 aq 150
+208 msdgwe 406
 208
-208 xg
-208 bsgj
-208 q
-208 hj
-208 csg
-208 mgr
+208 xg 198
+208 bsgj 198
+208 q 150
+208 hj 150
+208 csg 198
+208 mgr 300
 208
-208 cshe
-208 j
+208 cshe 198
+208 j 300
 208
-208 nadhqw
-208 csq
-208 j
-208 naghjq
-208 cmj
-208 xg
-208 znafhe
-208 zw
-208 vhe
-208 e
-208 zw
-208 cbmhet
-208 e
-208 xwe
-208 zbhq
-208 e
-208 jwe
-208 nadhq
-208 cqe
-208 e
-208 xnh
-208 mqe
-208 e
-208 znah
-208 qe
-208 e
-208 bdh
-208 d
+208 nadhqw 198
+208 csq 198
+208 j 150
+208 naghjq 198
+208 cmj 150
+208 xg 150
+208 znafhe 198
+208 zw 198
+208 vhe 198
+208 e 150
+208 zw 150
+208 cbmhet 198
+208 e 150
+208 xwe 198
+208 zbhq 198
+208 e 150
+208 jwe 198
+208 nadhq 198
+208 cqe 198
+208 e 150
+208 xnh 198
+208 mqe 198
+208 e 150
+208 znah 198
+208 qe 150
+208 e 150
+208 bdh 198
+208 d 300
 208
-208 znadh
-208 zf
-208 vnaq
-208 znw
-208 ae
-208 bmsdqw
-208 g
-208 xq
-208 bmsgj
-208 q
-208 mhj
-208 cbmsg
-208 d
-208 xbmje
-208 cmsh
-208 xbmqw
-208 mgj
-208 cnah
-208 cjq
-208 t
-208 zcnet
-208 cw
-208 q
-208 xvnfh
-208 zcq
-208 xnahwe
-208 zh
-208 xw
-208 cmgjqw
-208 q
-208 xbwe
-208 bmgjwt
-208 w
-208 xgjq
-208 zcnh
-208 j
-208 cqw
-208 nr
-208 mwe
-208 q
-208 ae
-208 cqw
-208 h
-208 xngh
-208 dj
-208 g
-208 zvnadh
-208 zj
-208 q
-208 zvngw
-208 naq
-208 xbmsdj
-208 t
-208 xe
-208 bmsgwe
-208 vq
-208 chj
-208 cbmsq
-208 e
-208 xmgqw
-208 cbmhw
-208 bmjwt
-208 xj
-208 znadq
-208 zxcsqe
-208 mjy
-208 nadw
-208 zmhwt
-208 xgq
-208 vnafhe
-208 znw
-208 e
-208 nmadhe
-208 zw
-208 bmshwe
-208 ge
-208 zjw
-208 mshqwe
-208 zet
-208 bmweu
-208 nahqy
-208 e
-208 cqe
-208 nh
-208 mqe
-208 e
-208 zah
-208 qe
-208 e
-208 cdh
-208 d
+208 znadh 198
+208 zf 198
+208 vnaq 198
+208 znw 150
+208 ae 150
+208 bmsdqw 198
+208 g 198
+208 xq 198
+208 bmsgj 198
+208 q 150
+208 mhj 198
+208 cbmsg 198
+208 d 198
+208 xbmje 198
+208 cmsh 198
+208 xbmqw 198
+208 mgj 150
+208 cnah 198
+208 cjq 198
+208 t 198
+208 zcnet 198
+208 cw 198
+208 q 150
+208 xvnfh 198
+208 zcq 198
+208 xnahwe 198
+208 zh 150
+208 xw 198
+208 cmgjqw 198
+208 q 150
+208 xbwe 198
+208 bmgjwt 198
+208 w 150
+208 xgjq 198
+208 zcnh 198
+208 j 150
+208 cqw 198
+208 nr 198
+208 mwe 198
+208 q 150
+208 ae 198
+208 cqw 198
+208 h 150
+208 xngh 198
+208 dj 198
+208 g 150
+208 zvnadh 198
+208 zj 198
+208 q 150
+208 zvngw 198
+208 naq 150
+208 xbmsdj 198
+208 t 150
+208 xe 198
+208 bmsgwe 198
+208 vq 150
+208 chj 150
+208 cbmsq 198
+208 e 150
+208 xmgqw 198
+208 cbmhw 198
+208 bmjwt 198
+208 xj 150
+208 znadq 198
+208 zxcsqe 198
+208 mjy 150
+208 nadw 198
+208 zmhwt 150
+208 xgq 150
+208 vnafhe 198
+208 znw 198
+208 e 150
+208 nmadhe 198
+208 zw 150
+208 bmshwe 198
+208 ge 150
+208 zjw 198
+208 mshqwe 198
+208 zet 150
+208 bmweu 150
+208 nahqy 198
+208 e 150
+208 cqe 198
+208 nh 198
+208 mqe 198
+208 e 150
+208 zah 198
+208 qe 150
+208 e 150
+208 cdh 198
+208 d 300
 208
-208 ndhq
-208 zcj
-208 dj
-208 xnmdqw
-208 zcbw
-208 sdgjty
-208 mw
-208 xvnhq
-208 cbmgj
-208 mq
-208 mdgj
-208 vafh
-208 za
-208 zbnag
+208 ndhq 198
+208 zcj 198
+208 dj 150
+208 xnmdqw 198
+208 zcbw 198
+208 sdgjty 198
+208 mw 150
+208 xvnhq 198
+208 cbmgj 198
+208 mq 150
+208 mdgj 198
+208 vafh 198
+208 za 150
+208 zbnag 198
 #第3段：
-208 vnh
-208 baj
-208 znaqr
-208 zadge
-208 zbafgw
-208 ag
-208 zcbdq
-208 xcdhj
-208 g
-208 xnsfgh
-208 vd
-208 cng
-208 xcnshj
-208 vmfq
-208 cnader
-208 cd
-208 csh
-208 zcawe
-208 cmq
-208 zndj
-208 vbmsgh
-208 vr
-208 vaqe
-208 mj
-208 vmq
-208 zvngj
-208 cbmg
-208 cndf
-208 cg
-208 bmh
-208 cjq
-208 w
-208 zcnaey
-208 cmq
-208 ch
-208 zcmadh
-208 nsq
-208 ce
-208 xbmgw
-208 xnj
-208 bmqw
-208 zmt
-208 cq
-208 zvbnhj
-208 zr
-208 zbmwe
-208 zvnq
-208 znj
-208 zvnagh
-208 zcbg
-208 zxvbhj
-208 zbq
-208 zcbw
-208 zcber
-208 bt
-208 xvny
-208 xnfqr
-208 ndh
-208 vnasfh
-208 xvmq
-208 r
-208 cnsder
-208 nde
-208 nmdfqw
-208 xsw
-208 zcar
-208 xvnmy
-208 u
-208 zvdqy
-208 cbmt
-208 y
-208 vndtu
-208 zcny
+208 vnh 150
+208 baj 150
+208 znaqr 150
+208 zadge 198
+208 zbafgw 198
+208 ag 150
+208 zcbdq 198
+208 xcdhj 198
+208 g 150
+208 xnsfgh 198
+208 vd 198
+208 cng 150
+208 xcnshj 150
+208 vmfq 198
+208 cnader 198
+208 cd 150
+208 csh 198
+208 zcawe 150
+208 cmq 150
+208 zndj 150
+208 vbmsgh 198
+208 vr 150
+208 vaqe 198
+208 mj 198
+208 vmq 150
+208 zvngj 150
+208 cbmg 198
+208 cndf 198
+208 cg 150
+208 bmh 198
+208 cjq 198
+208 w 150
+208 zcnaey 198
+208 cmq 150
+208 ch 150
+208 zcmadh 198
+208 nsq 198
+208 ce 150
+208 xbmgw 198
+208 xnj 198
+208 bmqw 198
+208 zmt 150
+208 cq 150
+208 zvbnhj 198
+208 zr 150
+208 zbmwe 150
+208 zvnq 198
+208 znj 150
+208 zvnagh 150
+208 zcbg 198
+208 zxvbhj 150
+208 zbq 150
+208 zcbw 198
+208 zcber 198
+208 bt 150
+208 xvny 198
+208 xnfqr 150
+208 ndh 150
+208 vnasfh 198
+208 xvmq 198
+208 r 150
+208 cnsder 198
+208 nde 150
+208 nmdfqw 198
+208 xsw 150
+208 zcar 198
+208 xvnmy 198
+208 u 150
+208 zvdqy 198
+208 cbmt 198
+208 y 150
+208 vndtu 198
+208 zcny 406
 208
-208 ce
-208 nqy
+208 ce 198
+208 nqy 600
 208
 208
-208 vnhq
-208 naqy
-208 dw
-208 vnahey
-208 dq
-208 he
-208 bmsjwt
-208 du
-208 cbhjq
-208 dw
-208 q
-208 nhjtu
-208 de
-208 dqu
-208 cmjw
-208 dt
-208 dgwe
-208 nahq
-208 aq
-208 agqu
-208 cbdt
-208 agqu
-208 aq
-208 vnhr
-208 naer
-208 dq
-208 vnahqu
-208 du
-208 hy
-208 bmsjet
-208 de
-208 cbhjw
-208 su
-208 qy
-208 nhjty
-208 ae
-208 qu
-208 cmaqw
-208 se
-208 det
-208 zawy
-208 st
-208 qe
-208 cdu
-208 hqu
-208 t
-208 vfhy
-208 nart
-208 dt
-208 vafhyu
-208 dq
-208 he
-208 bsgjwt
-208 dq
-208 hu
-208 cdjtu
-208 q
-208 nhjyu
-208 de
-208 qe
-208 cdjw
-208 du
-208 dgqy
-208 nhy
-208 ae
-208 agqy
-208 cadu
-208 agty
-208 aw
-208 vdhy
-208 naey
-208 du
-208 ahq
-208 adwe
-208 hq
-208 bmsjwt
-208 du
-208 hq
-208 cbsjwt
-208 q
-208 nhju
+208 vnhq 198
+208 naqy 150
+208 dw 150
+208 vnahey 198
+208 dq 150
+208 he 150
+208 bmsjwt 198
+208 du 150
+208 cbhjq 198
+208 dw 150
+208 q 150
+208 nhjtu 198
+208 de 150
+208 dqu 150
+208 cmjw 198
+208 dt 150
+208 dgwe 150
+208 nahq 198
+208 aq 150
+208 agqu 150
+208 cbdt 198
+208 agqu 150
+208 aq 150
+208 vnhr 198
+208 naer 150
+208 dq 150
+208 vnahqu 198
+208 du 150
+208 hy 150
+208 bmsjet 198
+208 de 150
+208 cbhjw 198
+208 su 150
+208 qy 150
+208 nhjty 198
+208 ae 150
+208 qu 150
+208 cmaqw 198
+208 se 150
+208 det 150
+208 zawy 198
+208 st 150
+208 qe 198
+208 cdu 198
+208 hqu 198
+208 t 150
+208 vfhy 198
+208 nart 150
+208 dt 150
+208 vafhyu 198
+208 dq 150
+208 he 150
+208 bsgjwt 198
+208 dq 150
+208 hu 150
+208 cdjtu 198
+208 q 150
+208 nhjyu 198
+208 de 150
+208 qe 150
+208 cdjw 198
+208 du 150
+208 dgqy 150
+208 nhy 198
+208 ae 150
+208 agqy 150
+208 cadu 198
+208 agty 150
+208 aw 150
+208 vdhy 198
+208 naey 150
+208 du 150
+208 ahq 198
+208 adwe 150
+208 hq 150
+208 bmsjwt 198
+208 du 150
+208 hq 150
+208 cbsjwt 198
+208 q 150
+208 nhju 406
 208
-208 c
-208 n
+208 c 198
+208 n 406
 208
-208 m
-208 ba
+208 m 198
+208 ba 406
 208
-208 c
-208 n
+208 c 198
+208 n 406
 208
-208 h
-208 vnahy
-208 znaey
-208 fu
-208 vnahq
-208 zafwe
-208 vht
-208 bmsjqu
-208 xdw
-208 ht
-208 cbmdju
-208 xbqu
-208 mahjty
-208 cde
-208 cnq
-208 nadjyu
-208 cdu
-208 bgq
-208 nadhyu
-208 ca
-208 znagyu
-208 cnadt
-208 zae
-208 bnagqw
-208 vnahq
-208 zcnary
-208 zft
-208 vnahy
-208 zafqu
-208 nhe
-208 bmsjwe
-208 zdt
-208 hy
-208 cbmsju
-208 xqu
-208 nahjty
-208 cae
-208 zcq
-208 cnawyu
-208 su
-208 zcqe
-208 cadwey
-208 st
-208 zcnqe
-208 badgu
-208 xq
-208 zchtu
-208 vafhr
-208 znaer
-208 cfq
-208 vafhy
-208 zcafqu
-208 vhy
-208 bsgjwt
-208 zdq
-208 hu
-208 sdgjqu
-208 xq
-208 jt
-208 nadhey
-208 cq
-208 zadjyu
-208 du
-208 bgq
-208 badhyu
-208 zay
-208 bnagqe
-208 cnadw
-208 xat
-208 zbagqw
-208 vnahq
-208 zary
-208 ct
-208 nadhy
-208 zafqu
-208 zhy
-208 xmsjt
-208 bmsdqw
-208 zhu
-208 xbmsju
-208 zqu
-208 mjt
-208 cnahey
-208 q
-208 yu
-208 q
-208 e
+208 h 198
+208 vnahy 198
+208 znaey 198
+208 fu 150
+208 vnahq 198
+208 zafwe 198
+208 vht 150
+208 bmsjqu 198
+208 xdw 198
+208 ht 150
+208 cbmdju 198
+208 xbqu 198
+208 mahjty 198
+208 cde 150
+208 cnq 198
+208 nadjyu 198
+208 cdu 150
+208 bgq 198
+208 nadhyu 198
+208 ca 150
+208 znagyu 198
+208 cnadt 198
+208 zae 150
+208 bnagqw 198
+208 vnahq 198
+208 zcnary 198
+208 zft 150
+208 vnahy 198
+208 zafqu 198
+208 nhe 150
+208 bmsjwe 198
+208 zdt 198
+208 hy 150
+208 cbmsju 198
+208 xqu 198
+208 nahjty 198
+208 cae 150
+208 zcq 198
+208 cnawyu 198
+208 su 150
+208 zcqe 198
+208 cadwey 198
+208 st 150
+208 zcnqe 198
+208 badgu 198
+208 xq 150
+208 zchtu 198
+208 vafhr 198
+208 znaer 198
+208 cfq 150
+208 vafhy 198
+208 zcafqu 198
+208 vhy 150
+208 bsgjwt 198
+208 zdq 198
+208 hu 150
+208 sdgjqu 198
+208 xq 198
+208 jt 150
+208 nadhey 198
+208 cq 198
+208 zadjyu 198
+208 du 150
+208 bgq 198
+208 badhyu 198
+208 zay 150
+208 bnagqe 198
+208 cnadw 198
+208 xat 150
+208 zbagqw 198
+208 vnahq 198
+208 zary 198
+208 ct 150
+208 nadhy 198
+208 zafqu 198
+208 zhy 150
+208 xmsjt 198
+208 bmsdqw 198
+208 zhu 150
+208 xbmsju 198
+208 zqu 198
+208 mjt 150
+208 cnahey 198
+208 q 150
+208 yu 150
+208 q 150
+208 e 150
 #第4段：
-208 y
+208 y 614
 208
 208
-208 xbm
+208 xbm 406
 208
-208 t
-208 zvnhy
-208 nu
-208 zafe
-208 znahe
-208 zafqw
-208 he
-208 xbmjw
-208 xsdtu
-208 hw
-208 msdjtu
-208 xq
-208 ju
-208 nadhwy
-208 cqe
-208 zadjyu
-208 d
-208 bgu
-208 badhet
-208 aw
-208 ngy
-208 zbadqw
-208 aw
-208 zbagqu
-208 vnahy
-208 u
-208 zafqy
-208 zadhy
-208 zafu
-208 zhy
-208 bmsjt
-208 xdwu
-208 h
-208 xsgjtu
-208 xqe
-208 xjw
-208 nadhey
-208 cqy
-208 au
-208 zcnswe
-208 zce
-208 zdhwey
-208 su
-208 cq
-208 cndty
+208 t 198
+208 zvnhy 198
+208 nu 150
+208 zafe 198
+208 znahe 198
+208 zafqw 198
+208 he 150
+208 xbmjw 198
+208 xsdtu 198
+208 hw 150
+208 msdjtu 198
+208 xq 198
+208 ju 150
+208 nadhwy 198
+208 cqe 198
+208 zadjyu 198
+208 d 150
+208 bgu 198
+208 badhet 198
+208 aw 150
+208 ngy 198
+208 zbadqw 198
+208 aw 150
+208 zbagqu 198
+208 vnahy 198
+208 u 150
+208 zafqy 198
+208 zadhy 198
+208 zafu 198
+208 zhy 150
+208 bmsjt 198
+208 xdwu 198
+208 h 150
+208 xsgjtu 198
+208 xqe 198
+208 xjw 150
+208 nadhey 198
+208 cqy 198
+208 au 150
+208 zcnswe 198
+208 zce 198
+208 zdhwey 198
+208 su 150
+208 cq 198
+208 cndty 406
 208
-208 zchu
-208 zafhr
-208 znq
-208 vbafrt
-208 znahy
-208 zmafu
-208 nhy
-208 bmsjt
-208 xmsdwu
-208 zh
-208 xbmdju
-208 xqt
-208 mj
-208 nadhey
-208 cq
-208 ndq
-208 cmdjwu
-208 bmgt
-208 badheu
-208 car
-208 nge
-208 zbadqw
-208 xau
-208 cbagty
-208 znahy
-208 vu
-208 zcaqe
-208 zvnhy
-208 cvafwe
-208 zhq
-208 xbmju
-208 xbsdqw
-208 mht
-208 xbmju
-208 zxmsqw
-208 bju
-208 cnahyu
-208 zcq
-208 nw
-208 xcnet
-208 nu
-208 sdty
-208 h
-208 w
-208 cbaey
+208 zchu 198
+208 zafhr 198
+208 znq 150
+208 vbafrt 198
+208 znahy 198
+208 zmafu 198
+208 nhy 150
+208 bmsjt 198
+208 xmsdwu 198
+208 zh 150
+208 xbmdju 198
+208 xqt 198
+208 mj 150
+208 nadhey 198
+208 cq 198
+208 ndq 150
+208 cmdjwu 198
+208 bmgt 198
+208 badheu 198
+208 car 150
+208 nge 198
+208 zbadqw 198
+208 xau 150
+208 cbagty 198
+208 znahy 198
+208 vu 150
+208 zcaqe 198
+208 zvnhy 198
+208 cvafwe 198
+208 zhq 150
+208 xbmju 198
+208 xbsdqw 198
+208 mht 150
+208 xbmju 198
+208 zxmsqw 198
+208 bju 150
+208 cnahyu 198
+208 zcq 150
+208 nw 150
+208 xcnet 198
+208 nu 150
+208 sdty 198
+208 h 150
+208 w 150
+208 cbaey 406
 208
-208 t
-208 znahy
-208 nhe
-208 afqryu
-208 zahqy
-208 aqe
-208 cfhwry
-208 xmsju
-208 xsdwe
-208 zhy
-208 xbmju
-208 zbdqeu
-208 jtu
-208 nadhey
-208 cq
-208 zdeu
-208 nsdjeu
-208 bgqt
-208 zadhey
-208 aq
-208 ngtu
-208 adqety
-208 xaqe
-208 cbgwt
-208 vbahqy
-208 cy
-208 zafqr
-208 znahy
-208 aqu
-208 fhqery
-208 bsjwu
-208 zxdet
-208 hy
-208 xbmju
-208 zxsqwu
-208 bjtu
-208 nahqey
-208 zcq
-208 aqu
-208 znswyu
-208 zcqe
-208 nde
-208 nadety
-208 zce
-208 cdgqeu
-208 zdqe
-208 xeu
-208 cafhty
-208 chey
-208 zaqry
-208 zfhey
-208 qy
-208 caqery
-208 xgjwu
-208 xswetu
-208 zqy
-208 xsgwu
-208 zbsqet
-208 u
-208 nadhy
-208 cdqe
-208 e
-208 bdhqeu
-208 bgt
-208 zet
-208 nadgqy
-208 bhtu
-208 cnadqe
-208 zqe
-208 bgt
-208 nahqty
-208 hry
-208 zaqry
-208 zafry
-208 qy
-208 zaqry
-208 xmseu
-208 zxswer
-208 wy
-208 xsgqu
-208 zxsqwr
-208 u
-208 nadhy
-208 xcu
-208 ny
-208 xcty
-208 nu
-208 st
-208 cdhy
-208 w
-208 zcbaqe
+208 t 198
+208 znahy 198
+208 nhe 150
+208 afqryu 198
+208 zahqy 198
+208 aqe 150
+208 cfhwry 198
+208 xmsju 198
+208 xsdwe 198
+208 zhy 150
+208 xbmju 198
+208 zbdqeu 198
+208 jtu 150
+208 nadhey 198
+208 cq 198
+208 zdeu 150
+208 nsdjeu 198
+208 bgqt 198
+208 zadhey 198
+208 aq 150
+208 ngtu 198
+208 adqety 198
+208 xaqe 150
+208 cbgwt 198
+208 vbahqy 198
+208 cy 150
+208 zafqr 198
+208 znahy 198
+208 aqu 150
+208 fhqery 198
+208 bsjwu 198
+208 zxdet 198
+208 hy 150
+208 xbmju 198
+208 zxsqwu 198
+208 bjtu 150
+208 nahqey 198
+208 zcq 198
+208 aqu 150
+208 znswyu 198
+208 zcqe 198
+208 nde 150
+208 nadety 198
+208 zce 198
+208 cdgqeu 198
+208 zdqe 150
+208 xeu 198
+208 cafhty 198
+208 chey 150
+208 zaqry 198
+208 zfhey 198
+208 qy 150
+208 caqery 198
+208 xgjwu 198
+208 xswetu 198
+208 zqy 150
+208 xsgwu 198
+208 zbsqet 198
+208 u 150
+208 nadhy 198
+208 cdqe 198
+208 e 150
+208 bdhqeu 198
+208 bgt 198
+208 zet 150
+208 nadgqy 198
+208 bhtu 198
+208 cnadqe 198
+208 zqe 150
+208 bgt 198
+208 nahqty 198
+208 hry 150
+208 zaqry 198
+208 zafry 198
+208 qy 150
+208 zaqry 198
+208 xmseu 198
+208 zxswer 198
+208 wy 150
+208 xsgqu 198
+208 zxsqwr 198
+208 u 150
+208 nadhy 198
+208 xcu 150
+208 ny 150
+208 xcty 150
+208 nu 150
+208 st 150
+208 cdhy 198
+208 w 198
+208 zcbaqe 406
 208
-208 zcndj
-208 zadghq
-208 de
-208 zadjeu
-208 zadhq
-208 de
-208 bdgwey
-208 mgjtu
-208 mjw
-208 fhjqyu
-208 xdgtu
-208 xbdqeu
-208 gt
-208 vnahy
-208 vnagqt
-208 baqt
-208 nahqyu
-208 zvnaq
-208 vnaqr
-208 adgqet
-208 zafwr
-208 zadqet
-208 u
-208 zbdey
-208 sfgrty
-208 nht
-208 zvnfe
-208 dfhwty
-208 znahu
-208 nmfhqr
-208 nade
-208 znhe
-208 sdhwey
-208 xnaq
-208 ndhqeu
-208 bht
-208 vnswy
-208 vafqer
-208 vfq
-208 vmfjqu
-208 znahu
-208 zvft
-208 cbdget
-208 cbmhr
-208 cdt
-208 cbmjyu
-208 cbdq
-208 znaqwy
-208 cde
-208 zcmj
-208 cadqey
-208 cdy
-208 cnsdwe
-208 bmsjw
-208 xmt
-208 bnmhqu
-208 xmsgw
-208 xcbdqt
-208 bgu
-208 vnahy
-208 zbager
-208 zaw
-208 zafhq
-208 zvaqyu
-208 znat
-208 vbagty
-208 zvfu
+208 zcndj 198
+208 zadghq 198
+208 de 150
+208 zadjeu 198
+208 zadhq 198
+208 de 150
+208 bdgwey 198
+208 mgjtu 198
+208 mjw 150
+208 fhjqyu 198
+208 xdgtu 198
+208 xbdqeu 198
+208 gt 150
+208 vnahy 198
+208 vnagqt 198
+208 baqt 150
+208 nahqyu 198
+208 zvnaq 198
+208 vnaqr 150
+208 adgqet 198
+208 zafwr 198
+208 zadqet 198
+208 u 150
+208 zbdey 198
+208 sfgrty 198
+208 nht 150
+208 zvnfe 198
+208 dfhwty 198
+208 znahu 150
+208 nmfhqr 198
+208 nade 198
+208 znhe 150
+208 sdhwey 198
+208 xnaq 198
+208 ndhqeu 198
+208 bht 150
+208 vnswy 198
+208 vafqer 198
+208 vfq 150
+208 vmfjqu 198
+208 znahu 198
+208 zvft 150
+208 cbdget 198
+208 cbmhr 198
+208 cdt 150
+208 cbmjyu 198
+208 cbdq 198
+208 znaqwy 198
+208 cde 150
+208 zcmj 198
+208 cadqey 198
+208 cdy 150
+208 cnsdwe 198
+208 bmsjw 198
+208 xmt 150
+208 bnmhqu 198
+208 xmsgw 198
+208 xcbdqt 198
+208 bgu 150
+208 vnahy 198
+208 zbager 198
+208 zaw 150
+208 zafhq 198
+208 zvaqyu 198
+208 znat 150
+208 vbagty 198
+208 zvfu 198
 #第5段：
-208 zaq
-208 xbadwe
-208 zcbdr
-208 bnfgty
-208 cr
-208 xnfqr
-208 dfwery
-208 aqy
-208 zvmfjr
-208 cnade
-208 cswr
-208 mdfwer
-208 xadqe
-208 zsw
-208 adjqry
-208 xnshy
-208 zbadeu
-208 y
-208 cbmgt
-208 xbdeyu
-208 nt
-208 zcnhy
-208 zce
-208
-208 cnqy
-208
-208 zdhqy
-208 zcdeu
-208 zadjw
-208 cdhqey
-208 zcdet
-208 cbdgwu
-208 bgqtu
-208 xmjy
-208 nmfweu
-208 xgjwy
-208 xbwt
-208 dgqetu
-208 zahry
-208 ahjqty
-208 zbgqe
-208 zfhwr
-208 nmajqe
-208 zvnhq
-208 gjqtyu
-208 zvfwt
-208 zbaqy
-208 bgqwru
-208 zcdqe
-208 fgjqru
-208 ht
-208 zfwry
-208 fhqwer
-208 znaqe
-208 zvmjw
-208 adgqeu
-208 qe
-208 bmsdwe
-208 zdhqe
-208 xmjey
-208 mhjwet
-208 vafwy
-208 zcnqru
-208 zcmey
-208 zfhwt
-208 vnjqyu
-208 znhey
-208 sfgery
-208 xvde
-208 cbsw
-208 adgjqu
-208 cnht
-208 cbdge
-208 dhqeyu
-208 zadjw
-208 cdhqey
-208 zcdet
-208 zbdgw
-208 dgqwtu
-208 xmjy
-208 nmfweu
-208 xgjwt
-208 xbwt
-208 dgqetu
-208 zahry
-208 ahjqty
-208 zbgqe
-208 zfhwr
-208 nmajqe
-208 zvmhq
-208 zgqtu
-208 afjwty
-208 znaqy
-208 bgqweu
-208 cdq
-208 cbgju
-208 nfhqrt
-208 xfwry
-208 fhqwer
-208 cbaqe
-208 zvmjw
-208 ndgqeu
-208 cmqe
-208 nmsfwr
-208 xdhqe
-208 xmswy
-208 adjqet
-208 xhqry
-208 qey
-208 badqey
-208 cdhey
-208 xbdqey
-208 nqey
-208 chqey
+208 zaq 150
+208 xbadwe 198
+208 zcbdr 198
+208 bnfgty 198
+208 cr 150
+208 xnfqr 198
+208 dfwery 198
+208 aqy 150
+208 zvmfjr 198
+208 cnade 198
+208 cswr 150
+208 mdfwer 198
+208 xadqe 198
+208 zsw 150
+208 adjqry 198
+208 xnshy 198
+208 zbadeu 198
+208 y 150
+208 cbmgt 198
+208 xbdeyu 198
+208 nt 150
+208 zcnhy 198
+208 zce 300
+208
+208 cnqy 406
+208
+208 zdhqy 198
+208 zcdeu 150
+208 zadjw 198
+208 cdhqey 198
+208 zcdet 150
+208 cbdgwu 198
+208 bgqtu 198
+208 xmjy 150
+208 nmfweu 198
+208 xgjwy 198
+208 xbwt 150
+208 dgqetu 198
+208 zahry 198
+208 ahjqty 150
+208 zbgqe 150
+208 zfhwr 198
+208 nmajqe 150
+208 zvnhq 150
+208 gjqtyu 198
+208 zvfwt 150
+208 zbaqy 150
+208 bgqwru 198
+208 zcdqe 198
+208 fgjqru 198
+208 ht 150
+208 zfwry 198
+208 fhqwer 198
+208 znaqe 150
+208 zvmjw 198
+208 adgqeu 198
+208 qe 150
+208 bmsdwe 198
+208 zdhqe 198
+208 xmjey 150
+208 mhjwet 198
+208 vafwy 198
+208 zcnqru 150
+208 zcmey 150
+208 zfhwt 198
+208 vnjqyu 150
+208 znhey 150
+208 sfgery 198
+208 xvde 198
+208 cbsw 150
+208 adgjqu 198
+208 cnht 150
+208 cbdge 150
+208 dhqeyu 198
+208 zadjw 198
+208 cdhqey 198
+208 zcdet 150
+208 zbdgw 198
+208 dgqwtu 198
+208 xmjy 150
+208 nmfweu 198
+208 xgjwt 198
+208 xbwt 150
+208 dgqetu 150
+208 zahry 198
+208 ahjqty 150
+208 zbgqe 150
+208 zfhwr 198
+208 nmajqe 150
+208 zvmhq 150
+208 zgqtu 198
+208 afjwty 150
+208 znaqy 150
+208 bgqweu 198
+208 cdq 150
+208 cbgju 150
+208 nfhqrt 198
+208 xfwry 198
+208 fhqwer 198
+208 cbaqe 150
+208 zvmjw 198
+208 ndgqeu 198
+208 cmqe 150
+208 nmsfwr 150
+208 xdhqe 198
+208 xmswy 150
+208 adjqet 198
+208 xhqry 198
+208 qey 150
+208 badqey 198
+208 cdhey 198
+208 xbdqey 198
+208 nqey 150
+208 chqey 822
 208
 208
 208
-208 cndhe
+208 cndhe 1030
 208
 208
 208
 208
-208 h
+208 h 1862
 208
 208
 208
@@ -1158,134 +1158,134 @@
 208
 208
 208
-208 vd
+208 vd 406
 208
-208 zs
+208 zs 406
 208
-208 vh
+208 vh 406
 208
-208 bs
+208 bs 406
 208
-208 nd
+208 nd 406
 208
-208 s
+208 s 406
 208
-208 vn
+208 vn 406
 208
-208 s
+208 s 406
 208
-208 bd
+208 bd 406
 208
-208 xs
+208 xs 406
 208
-208 bh
+208 bh 406
 208
-208 ns
+208 ns 406
 208
-208 md
+208 md 406
 208
-208 s
+208 s 406
 208
-208 n
+208 n 406
 208
-208 s
+208 s 406
 208
-208 nd
-208 jw
-208 ce
+208 nd 198
+208 jw 198
+208 ce 406
 208
-208 nh
+208 nh 406
 208
-208 ms
+208 ms 406
 208
-208 ad
+208 ad 406
 208
-208 s
+208 s 406
 208
-208 n
+208 n 406
 208
-208 s
+208 s 406
 208
-208 nd
+208 nd 406
 208
-208 se
+208 se 406
 208
-208 hy
+208 hy 406
 208
-208 su
+208 su 406
 208
-208 dq
+208 dq 406
 208
-208 su
+208 su 406
 208
-208 ny
+208 ny 406
 208
-208 se
+208 se 406
 208
-208 vd
+208 vd 406
 208
-208 zs
+208 zs 406
 208
-208 vh
+208 vh 406
 208
-208 bs
+208 bs 406
 208
-208 nd
+208 nd 406
 208
-208 s
+208 s 406
 208
-208 vn
+208 vn 406
 208
-208 s
+208 s 406
 208
-208 bd
+208 bd 406
 208
-208 xs
+208 xs 406
 208
-208 bh
+208 bh 406
 208
-208 ns
+208 ns 406
 208
-208 md
+208 md 406
 208
-208 s
+208 s 406
 208
-208 n
+208 n 406
 208
-208 s
+208 s 406
 208
-208 nd
-208 jw
-208 ce
+208 nd 198
+208 jw 198
+208 ce 406
 208
-208 nh
+208 nh 406
 208
-208 ms
+208 ms 406
 208
-208 ad
+208 ad 406
 208
-208 s
+208 s 406
 208
-208 n
+208 n 406
 208
-208 s
+208 s 406
 208
-208 d
+208 d 406
 208
-208 s
+208 s 406
 208
-208 h
+208 h 406
 208
-208 s
+208 s 406
 208
-208 d
+208 d 406
 208
-208 s
+208 s 406
 208
-208 n
+208 n 406
 #第6段：
 208
-208 s
+208 s 2000
 208
 208
 208

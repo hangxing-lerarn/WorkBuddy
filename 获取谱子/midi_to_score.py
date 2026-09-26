@@ -15,6 +15,7 @@ midi_to_score.py —— 把 MIDI 文件转换成原神「风物之诗琴」机�
     python midi_to_score.py 你的歌.mid --max-voices 2    # 最多同时弹 2 个音
     python midi_to_score.py 你的歌.mid --mode highest    # 回退到旧的单音线行为
     python midi_to_score.py 你的歌.mid --step exact      # 不量化，节奏最还原
+    python midi_to_score.py 你的歌.mid --hold midi       # 额外写一列按住时长（模拟长音）
     python midi_to_score.py 你的歌.mid -o ../scores/我的歌.txt
 
 核心约束（原神琴）：21 键 = 三组八度的自然音阶，没有升降号。
@@ -25,6 +26,7 @@ midi_to_score.py —— 把 MIDI 文件转换成原神「风物之诗琴」机�
                           不再像旧版那样把复音压成单音线
     --melody-track N      声部编织靠它判断「谁是主旋律」，判错了用这个覆盖
     --step exact          不套十六分网格，按原始 MIDI 的真实 onset 间隔逐行写
+    --hold midi           按 MIDI 每个音的真实时值写第三列，让长音真的被按住
     --speed               默认 1.0（与原曲等长）；auto = 按时长比对反推
     --max-octave-shift    超出琴域的音最多挪几个八度，默认 1，更远的不弹
 """
@@ -52,6 +54,13 @@ DRUM_KW = ("drum", "perc", "click", "鼓", "打击", "节奏")
 # 声部编织的 onset 分组宽度（毫秒）= 播放器按键按住时长。
 # 比这更近的两个音在游戏里本来就分不开，强行排成两行只会被拉平。
 VOICE_BUCKET = 50
+
+# 按住时长（曲谱第三列）相关。
+# HOLD_DEFAULT_MS / HOLD_GAP_MS 必须与 parser.py 里的同名常量保持一致 ——
+# 转换器在这里就把按住时长钳好，所以谱面里写的值就是实际会按住的值。
+HOLD_DEFAULT_MS = 50      # 播放器默认按住时长，也是下限
+HOLD_GAP_MS = 10          # 钳制时给「松开旧键 + 按下新键」留的余量
+HOLD_ROUND_MS = 10        # 写入前按这个粒度取整，免得满屏 137 / 138 这种噪声值
 
 # 目录约定：全部相对本文件定位，换电脑/换路径都不用改
 PROJ_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -363,7 +372,7 @@ def resolve_voicing(args, notes3):
                       下限锁 3，是因为 1~2 半音同时响在 21 键琴上必然糊成一片。
     """
     by_onset = {}
-    for t, p, _ in notes3:
+    for t, p, _i, _d in notes3:
         by_onset.setdefault(round(t / VOICE_BUCKET), set()).add(p)
     poly = [len(v) for v in by_onset.values()]
     avg_poly = (sum(poly) / len(poly)) if poly else 1.0
@@ -396,7 +405,7 @@ def build_voicing(notes3, mel_idx, max_voices, min_interval, bass_gap, merge_ms,
     """
     声部编织：把「每个时刻只留最高音」换成「每个时刻编一个小和弦」。
 
-    notes3 = [(毫秒, 音高, 轨号)]，按 merge_ms 分组成「同时响的音」，每组取：
+    notes3 = [(毫秒, 音高, 轨号, 时值毫秒)]，按 merge_ms 分组成「同时响的音」，每组取：
       1. 旋律声部 = 旋律轨在本组内的最高音（该组没有旋律轨的音时退回全组最高音）
       2. 低音声部 = 本组最低音，且必须与旋律拉开 bass_gap 半音以上才值得占一根手指
       3. 填充声部 = 从高到低补，任何两音至少差 min_interval 半音（避开相邻半音的音簇）
@@ -405,8 +414,11 @@ def build_voicing(notes3, mel_idx, max_voices, min_interval, bass_gap, merge_ms,
     间隔」「填充与已有声部的间隔」都按落到琴上之后的实际音高算 —— 否则会出现
     「低音选中了却一映射就被丢」或者「两个音映射到相邻键」的假复音。
 
-    返回 ([(毫秒, 音高)], 组数, 旋律数, 低音数, 填充数, 整组跳过的时刻数)。
+    返回 ([(毫秒, 音高, 按住毫秒)], 组数, 旋律数, 低音数, 填充数, 整组跳过的时刻数)。
     音高返回的是**原始音高**，由调用方统一走 map_pitch 落到琴键上。
+
+    按住时长按「组」而不是按「音」给：同一时刻的键是一起按下、一起松开的，
+    没法各按各的，所以取组内最长的时值 —— 和弦里最长的那根决定它响多久。
     """
     def fit(p):
         if pool is None:
@@ -415,18 +427,20 @@ def build_voicing(notes3, mel_idx, max_voices, min_interval, bass_gap, merge_ms,
         return s if keep else None
 
     groups = []
-    for t, p, i in notes3:
-        if groups and t - groups[-1][-1][0] <= merge_ms:
-            groups[-1].append((t, p, i))
+    for n in notes3:
+        if groups and n[0] - groups[-1][-1][0] <= merge_ms:
+            groups[-1].append(n)
         else:
-            groups.append([(t, p, i)])
+            groups.append([n])
 
     out = []
     n_mel = n_bass = n_fill = n_skip = 0
     for g in groups:
         t0 = g[0][0]
+        g_hold = max(d for *_x, d in g)
+        pitch_set = {n[1] for n in g}
         # 旋律：从旋律轨的音里由高到低试，取第一个弹得出来的
-        mel = [p for _, p, i in g if i == mel_idx] or [p for _, p, _ in g]
+        mel = [n[1] for n in g if n[2] == mel_idx] or list(pitch_set)
         sel = []
         for p in sorted(set(mel), reverse=True):
             s = fit(p)
@@ -439,7 +453,7 @@ def build_voicing(notes3, mel_idx, max_voices, min_interval, bass_gap, merge_ms,
             continue
         top = sel[0][1]
         # 低音：从最低音往上找第一个「弹得出来且与旋律拉开足够远」的
-        for p in sorted({p for _, p, _ in g}):
+        for p in sorted(pitch_set):
             if len(sel) >= max_voices:
                 break
             s = fit(p)
@@ -448,7 +462,7 @@ def build_voicing(notes3, mel_idx, max_voices, min_interval, bass_gap, merge_ms,
                 n_bass += 1
                 break
         # 填充：从高到低补，按琴上音高保证两两间隔
-        for p in sorted({p for _, p, _ in g}, reverse=True):
+        for p in sorted(pitch_set, reverse=True):
             if len(sel) >= max_voices:
                 break
             s = fit(p)
@@ -458,7 +472,7 @@ def build_voicing(notes3, mel_idx, max_voices, min_interval, bass_gap, merge_ms,
                 sel.append((p, s))
                 n_fill += 1
         for src, _s in sel:
-            out.append((t0, src))
+            out.append((t0, src, g_hold))
     return out, len(groups), n_mel, n_bass, n_fill, n_skip
 
 
@@ -466,21 +480,21 @@ def assemble_exact(mapped, args):
     """
     不量化模式：按真实 onset 间隔逐行写。
 
-    mapped = [(毫秒, 按键字符)]。相邻间隔小于 args.merge_ms 的音并成和弦
-    ——播放器按键只按住 50ms，更近的音本来就分不开。
-    返回 ([(间隔毫秒, 按键串)], 因和弦上限丢掉的音数)
+    mapped = [(毫秒, 按键字符, 按住毫秒)]。相邻间隔小于 args.merge_ms 的音并成和弦
+    ——播放器按键按住是有时长的，更近的音本来就分不开。
+    返回 ([(间隔毫秒, 按键串, 按住毫秒)], 因和弦上限丢掉的音数)
     """
     groups = []
-    for t, c in mapped:
+    for t, c, h in mapped:
         if groups and t - groups[-1][-1][0] <= args.merge_ms:
-            groups[-1].append((t, c))
+            groups[-1].append((t, c, h))
         else:
-            groups.append([(t, c)])
+            groups.append([(t, c, h)])
 
     items, dropped = [], 0
     prev_t = None
     for g in groups:
-        keys = sorted({c for _, c in g}, key=ORDER.index)
+        keys = sorted({c for _, c, _ in g}, key=ORDER.index)
         if len(keys) > args.max_chord:
             dropped += len(keys) - args.max_chord
             keys = keys[-args.max_chord:]
@@ -488,7 +502,8 @@ def assemble_exact(mapped, args):
         # 第一行的间隔保留前奏留白，之后用真实差值（合并阈值保证差值 > merge_ms）
         delta = int(round(t0)) if prev_t is None else max(1, int(round(t0 - prev_t)))
         prev_t = t0
-        items.append((delta, "".join(keys)))
+        # 和弦一起按下一起松开，按住时长取组内最长的那个
+        items.append((delta, "".join(keys), max(h for _, _, h in g)))
     return items, dropped
 
 
@@ -529,6 +544,21 @@ def build_parser():
                     help="间隔小于该值算「同时响」：--step exact 按它并成和弦，"
                          "--mode voicing 按它分组挑声部。默认 50"
                          "（= 播放器按键按住时长，更近的音本来就分不开）")
+    ap.add_argument("--hold", choices=("none", "midi"), default="none",
+                    help="是否在按键后面再写一列「按住毫秒」："
+                         "none=不写（默认，播放器统一按住 50ms）；"
+                         "midi=按 MIDI 里每个音的真实时值写，长音会被真的按住。"
+                         "播放器会把按住时长钳到「到下一个发声音的间隔」以内，"
+                         "否则按键阻塞会让整首越弹越晚")
+    ap.add_argument("--hold-max", type=int, default=2000,
+                    help="--hold midi 时写入的按住时长上限，默认 2000ms。"
+                         "MIDI 里长音（尤其带踏板的尾音）动辄好几秒，"
+                         "琴上按住再久也不会更响，截掉可以避免弹完还要干等")
+    ap.add_argument("--hold-round", type=int, default=HOLD_ROUND_MS,
+                    help=f"--hold midi 时按住时长取整粒度，默认 {HOLD_ROUND_MS}ms；0=不取整")
+    ap.add_argument("--hold-min", type=int, default=0,
+                    help="--hold midi 时写入的按住时长下限，默认 0（= 交给播放器用 50ms）。"
+                         "设成一个较大的值（如 200）等于给每个音一个统一的重音")
     ap.add_argument("--speed", default=None,
                     help="写入首行的倍速：省略=1.0（与原曲等长）；auto=按谱子时长与原曲"
                          "时长之比反推；也可直接给数字。小于 1 会变慢")
@@ -549,6 +579,106 @@ def build_parser():
     return ap
 
 
+def shape_hold(hold_ms, args):
+    """
+    把 MIDI 的原始时值（毫秒）规整成要写进曲谱第三列的值。
+
+    时值读不出来（MIDI 没有配对的 note off，dur=0）时退回 HOLD_DEFAULT_MS。
+    最后一定托到 HOLD_DEFAULT_MS 之上 —— 十几毫秒的装饰音在游戏里可能根本收不到，
+    所以谱子里不会出现「看着像坏了」的小数字；写多少就是实际按住多少
+    （播放器只会在它太长、会挤晚后续音符时往下压）。
+
+    取整是为了谱子干净：时值换算成毫秒后常常是 137.4 这种数，
+    按 --hold-round 归到 10ms 粒度就够了，琴上听不出差别。
+    """
+    h = float(hold_ms) if hold_ms > 0 else float(HOLD_DEFAULT_MS)
+    if args.hold_max > 0:
+        h = min(h, args.hold_max)
+    if args.hold_round > 0:
+        h = round(h / args.hold_round) * args.hold_round
+    h = max(h, HOLD_DEFAULT_MS)            # 播放器下限，永远不低于它
+    if args.hold_min > 0:
+        h = max(h, args.hold_min)
+    return max(1, int(round(h)))
+
+
+def cap_hold_list(items):
+    """
+    把每个发声行的按住时长压到「离下一个发声行还有多久 − HOLD_GAP_MS」，下限托到
+    HOLD_DEFAULT_MS。规则与 parser.py 的 _clamp_holds() 完全一致（那里的兜底是给
+    手写/手改的谱子用的，对这里产出的文件是**恒等**操作）。
+
+    为什么转换阶段就要钳，而不是留给播放器：
+      · 谱面里写的值 = 实际会按住的值，不用每次都解释「这只是标称时值」；
+      · 不钳的话 MIDI 踏板造成的长时值会原样写进文件，
+        例如打上花火有 87% 的行写着 600ms 以上、实际只按几十毫秒。
+    钳的是「下一个**发声行**」而不是「下一行」：休止行什么都不做，按住跨过去无害。
+
+    入参/返回都是 [(间隔毫秒, 按键串, 按住毫秒)]。
+    """
+    n = len(items)
+    if not n:
+        return list(items)
+    nxt = [None] * n                       # nxt[i] = 下一个有键的行
+    seen = None
+    for i in range(n - 1, -1, -1):
+        nxt[i] = seen
+        if items[i][1]:
+            seen = i
+    pref = [0] * (n + 1)                    # 前缀和，避免每个音都往后扫一遍
+    for i, it in enumerate(items):
+        pref[i + 1] = pref[i] + it[0]
+
+    out = []
+    for i, (delta, keys, hold) in enumerate(items):
+        j = nxt[i]
+        if not keys or hold <= 0 or j is None:
+            out.append((delta, keys, hold))   # 休止 / 没写时值 / 最后一个发声行
+            continue
+        cap = pref[j + 1] - pref[i + 1] - HOLD_GAP_MS
+        out.append((delta, keys, max(HOLD_DEFAULT_MS, min(hold, cap))))
+    return out
+
+
+def hold_stats(items):
+    """
+    统计按住时值会被播放器钳制掉多少。
+
+    items = [(间隔毫秒, 按键串, 按住毫秒)]。播放器把按住时长钳到
+    「到下一个**发声行**的间隔」以内（中间夹的休止行不算，它什么都不做），
+    否则按键阻塞会让后续音符迟到，而且迟到会累积。
+
+    这里用同样的口径算一遍，好在转换阶段就把代价报给用户 —— 不用等到实弹才发现。
+    返回 (发声行数, 会被钳制的行数, 时值中位, 最小, 最大)。
+    """
+    n = len(items)
+    if not n:
+        return 0, 0, 0, 0, 0
+    # 前缀和 + nxt[i]=下一个发声行的下标，避免对每个音都去扫一遍后面
+    pref = [0] * (n + 1)
+    for i, it in enumerate(items):
+        pref[i + 1] = pref[i] + it[0]
+    nxt = [None] * n
+    seen = None
+    for i in range(n - 1, -1, -1):
+        nxt[i] = seen
+        if items[i][1]:
+            seen = i
+
+    holds, clipped = [], 0
+    for i, (delta, keys, hold) in enumerate(items):
+        if not keys or hold <= 0:
+            continue
+        holds.append(hold)
+        j = nxt[i]
+        if j is not None and hold > pref[j + 1] - pref[i + 1]:
+            clipped += 1
+    if not holds:
+        return 0, 0, 0, 0, 0
+    holds.sort()
+    return len(holds), clipped, holds[len(holds) // 2], holds[0], holds[-1]
+
+
 def convert(midi_path, out_path, args):
     """把单个 MIDI 转成机器谱写到 out_path，返回统计 dict；失败返回 None"""
     try:
@@ -559,6 +689,10 @@ def convert(midi_path, out_path, args):
         print("  请确认这是未被截断的标准 MIDI 文件（.mid/.midi）")
         return None
     print(f"MIDI: format={fmt} 轨数={ntrks} division={division}")
+
+    def dur_of(s, d):
+        """音符时值（毫秒）。tempo 可能中途变，所以两端各换算一次再相减"""
+        return conv(s + d) - conv(s)
 
     all_notes = []
     for idx, events in enumerate(tracks):
@@ -572,12 +706,12 @@ def convert(midi_path, out_path, args):
     vp = None
     if args.mode == "track":
         picked = all_notes[args.track] if args.track < len(all_notes) else []
-        chosen = [(conv(s), p) for s, d, p, c in picked]
+        chosen = [(conv(s), p, dur_of(s, d)) for s, d, p, c in picked]
         print(f"使用 轨{args.track}，{len(chosen)} 个音符")
     elif args.mode == "merge":
         chosen = []
         for notes in all_notes:
-            chosen += [(conv(s), p) for s, d, p, c in notes]
+            chosen += [(conv(s), p, dur_of(s, d)) for s, d, p, c in notes]
         print(f"合并全部非打击轨，{len(chosen)} 个音符")
     elif args.mode == "voicing":
         roles = track_roles(tracks, all_notes)
@@ -588,7 +722,7 @@ def convert(midi_path, out_path, args):
             print(f"  !! 挑不出主旋律轨（{how}），本次退回「全轨取最高音」")
         else:
             print(f"  主旋律轨：轨{melody_idx}（{how}）")
-        notes3 = sorted((conv(s), p, i)
+        notes3 = sorted((conv(s), p, i, dur_of(s, d))
                         for i, notes in enumerate(all_notes)
                         for s, d, p, c in notes
                         if roles.get(i) != "鼓")
@@ -602,8 +736,11 @@ def convert(midi_path, out_path, args):
         bucket = {}
         for notes in all_notes:
             for s, d, p, c in notes:
-                bucket.setdefault(round(conv(s), 1), []).append(p)
-        chosen = [(t, max(ps)) for t, ps in bucket.items()]
+                bucket.setdefault(round(conv(s), 1), []).append((p, dur_of(s, d)))
+        chosen = []
+        for t, ps in bucket.items():
+            p, d = max(ps)                 # 先比音高，同音高再比时值
+            chosen.append((t, p, d))
         print(f"提取最高音旋律，{len(chosen)} 个音符")
 
     # 选调基准：声部编织时只看「主旋律轨的音」，不能把全部声部一起喂进来。
@@ -614,15 +751,15 @@ def convert(midi_path, out_path, args):
             key_pitches = [p for i, notes in enumerate(all_notes) if i == melody_idx
                            for s, d, p, c in notes]
         else:
-            key_pitches = [p for _, p, _ in notes3]
+            key_pitches = [n[1] for n in notes3]
         if not key_pitches:
-            key_pitches = [p for _, p, _ in notes3]
+            key_pitches = [n[1] for n in notes3]
     else:
         if not chosen:
             print("没有可用音符，请换 --mode 或 --track")
             return None
         chosen.sort()
-        key_pitches = [p for _, p in chosen]
+        key_pitches = [p for _, p, _ in chosen]
 
     # --- 网格：auto / 指定毫秒 / exact（不量化） ---
     exact = args.step.strip().lower() == "exact"
@@ -668,14 +805,15 @@ def convert(midi_path, out_path, args):
               f"（旋律 {n_mel} + 低音 {n_bass} + 填充 {n_fill}），"
               f"平均 {len(chosen) / max(n_grp, 1):.2f} 音/时刻{extra}")
 
-    onsets = [t for t, _ in chosen]
-    pitches = [p for _, p in chosen]
+    onsets = [t for t, _, _ in chosen]
+    pitches = [p for _, p, _ in chosen]
 
     # --- 落键：吸附 + 琴域外处置 ---
-    mapped = []                       # [(毫秒, 按键字符)]
+    # 时值在这一步规整成要写进谱子的值（取整 + 上下限），0 表示「用播放器默认」
+    mapped = []                       # [(毫秒, 按键字符, 按住毫秒)]
     out_range = 0
     n_altered = folds = 0
-    for t, p in chosen:
+    for t, p, hold in chosen:
         s, shifted, keep = map_pitch(p, pool, args.max_octave_shift)
         if not keep:
             out_range += 1
@@ -684,7 +822,7 @@ def convert(midi_path, out_path, args):
             folds += 1
         if s != p:
             n_altered += 1
-        mapped.append((t, ORDER[pool.index(s)]))
+        mapped.append((t, ORDER[pool.index(s)], shape_hold(hold, args)))
 
     print(f"音域 {min(pitches)}..{max(pitches)}（跨 {max(pitches) - min(pitches)} 半音）"
           f" -> 吸附改动 {n_altered}/{len(pitches)} 个音，挪八度 {folds} 个")
@@ -701,18 +839,21 @@ def convert(midi_path, out_path, args):
     if exact:
         items, chord_dropped = assemble_exact(mapped, args)
         note_lines = len(items)
-        body_ms = sum(d for d, _ in items)
+        body_ms = sum(it[0] for it in items)
         q_err = None
         print(f"不套网格：{note_lines} 个音符行，最后一个音落在 {body_ms / 1000:.1f}s")
     else:
         cells = {}
-        for t, c in mapped:
+        cell_hold = {}                 # 同一格里最长的那根决定这一格按住多久
+        for t, c, h in mapped:
             ci = int(round(t / step))
             prev = cells.get(ci)
             if prev is None:
                 cells[ci] = [c]
             elif c not in prev:
                 prev.append(c)
+            if h > cell_hold.get(ci, 0):
+                cell_hold[ci] = h
         # 和弦按低音区->高音区排序（项目的硬性约定），超出上限保留最高音
         for ci, keys in cells.items():
             keys.sort(key=ORDER.index)
@@ -730,11 +871,18 @@ def convert(midi_path, out_path, args):
             if pad:
                 print(f"为对齐 8 格小节，末尾补 {pad} 格休止")
             note_lines += pad
-        items = [(step, "".join(cells.get(ci, []))) for ci in range(note_lines)]
+        items = [(step, "".join(cells.get(ci, [])), cell_hold.get(ci, 0))
+                 for ci in range(note_lines)]
         body_ms = note_lines * step
 
     if chord_dropped:
         print(f"  !! 因和弦上限 {args.max_chord} 丢弃 {chord_dropped} 个音")
+
+    # 按住时长：先在「未钳制」的状态下统计有多少行会被压，再把 items 换成钳制后的值，
+    # 这样谱面里写的值 = 实际会按住的值（详见 cap_hold_list 的注释）。
+    write_hold = args.hold == "midi"
+    raw_hold = hold_stats(items) if write_hold else None
+    items = cap_hold_list(items)
 
     # --- 倍速：默认 1.0（与原曲等长）/ auto / 手写数字 ---
     span_ms = onsets[-1]                       # 原曲从第一个音到最后一个音
@@ -761,13 +909,18 @@ def convert(midi_path, out_path, args):
     elapsed = 0
     seg = 1
     next_mark = mark_gap
-    for delta, keys in items:
+    for delta, keys, hold in items:
         elapsed += delta
         if mark_gap > 0 and elapsed >= next_mark:
             seg += 1
             lines.append(f"#第{seg}段：")
             next_mark += mark_gap
-        lines.append(f"{delta} {keys}" if keys else str(delta))
+        if not keys:
+            lines.append(str(delta))
+        elif write_hold:
+            lines.append(f"{delta} {keys} {hold}")
+        else:
+            lines.append(f"{delta} {keys}")
 
     # --- 写出 ---
     os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
@@ -791,19 +944,31 @@ def convert(midi_path, out_path, args):
     # --- 自检 ---
     print("\n规范自检:")
     note_rows = [l for l in lines if not l.startswith("#")]
-    bad = [l for l in note_rows
-           if not (l.split(" ", 1)[0].isdigit()
-                   and (len(l.split()) == 1
-                        or all(c in ORDER for c in l.split()[1])))]
+    bad = []
+    for l in note_rows:
+        f = l.split()
+        ok = 1 <= len(f) <= 3 and f[0].isdigit()          # 一列=休止，两列=音符，三列=带按住时长
+        if ok and len(f) >= 2:
+            ok = all(c in ORDER for c in f[1])
+        if ok and len(f) >= 3:
+            ok = f[2].isdigit()
+        if not ok:
+            bad.append(l)
     print(f"  行语法违规        : {len(bad)}  {bad[:3]}")
     oc = 0
     for l in note_rows:
-        p = l.split(" ", 1)
-        if len(p) == 2:
-            ks = list(p[1])
+        f = l.split()
+        if len(f) >= 2:
+            ks = list(f[1])
             if ks != sorted(ks, key=ORDER.index):
                 oc += 1
     print(f"  和弦排序违规      : {oc}")
+    if write_hold:
+        tot, _clip, med, hlo, hhi = hold_stats(items)
+        print(f"  按住时长          : 中位 {med}ms，范围 {hlo}~{hhi}ms"
+              f"（谱面里写的就是实际按住多久）")
+        print(f"  （未钳制时 {raw_hold[1]}/{raw_hold[0]} 行会超过到下一个发声行的间隔，"
+              f"已按该间隔压写 —— 否则按键阻塞会让整首越弹越晚）")
     if exact:
         ivs = sorted({int(l.split()[0]) for l in note_rows})
         print(f"  间隔取值          : {len(ivs)} 种，{ivs[0]}~{ivs[-1]}ms"
@@ -829,7 +994,7 @@ def convert(midi_path, out_path, args):
     return {"notes": len(mapped), "cells": note_lines, "out": out_path,
             "backup": backup, "altered": n_altered, "folds": folds,
             "dropped": chord_dropped + out_range, "out_range": out_range,
-            "speed": speed, "step": step}
+            "speed": speed, "step": step, "hold": write_hold}
 
 
 # --------------------------------------------------------------------------
@@ -883,7 +1048,8 @@ def batch(args):
         print(f"  -> 谱子：{os.path.relpath(out_path, PROJ_DIR)}"
               f"（{stat['notes']} 音 / {stat['cells']} "
               f"{'行' if stat['step'] is None else '格'}"
-              f" / 倍速 {stat['speed']:g}{extra}）")
+              f" / 倍速 {stat['speed']:g}"
+              f"{' / 带按住时长' if stat['hold'] else ''}{extra}）")
         print(f"  -> 源文件已移入：{os.path.relpath(dest, PROJ_DIR)}\n")
 
     print("=" * 56)
