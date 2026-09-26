@@ -195,6 +195,9 @@ def render():
                     rows.append((INTERVAL, [hit] if hit else [],
                                  {"bar": bar_no, "cell": k, "sec": sec,
                                   "key": hit, "kind": kind, "dur_cells": g}))
+    # 末尾剩下的延长行只是把时间轴推到最后，并不发声 —— 去掉，让文件收在末音上
+    while rows and not rows[-1][1]:
+        rows.pop()
     return rows
 
 
@@ -338,8 +341,10 @@ def self_check(rows, times, text):
                    if l and not l.startswith("#") and len(l.split()) >= 3)
     print(f"  按住时长                {holds[0]} ~ {holds[-1]} 毫秒，中位 {holds[len(holds) // 2]}"
           f"（长音即长按 = 重音）")
-    print(f"  整曲时长                {times[-1] / 1000:.1f} 秒"
-          f"（{times[-1] // 60000} 分 {times[-1] % 60000 / 1000:.1f} 秒）")
+    # 末尾的延长行已经去掉，所以整曲时长 = 末音起点 + 末音的按住时长
+    dur = times[-1] + holds[-1]
+    print(f"  整曲时长                {dur / 1000:.1f} 秒"
+          f"（{int(dur) // 60000} 分 {dur % 60000 / 1000:.1f} 秒）")
 
     # 旋律走向：逐段打印每小节首音的相对走向
     print()
