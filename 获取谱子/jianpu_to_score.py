@@ -221,6 +221,7 @@ def parse_jianpu(text):
     """
     meta = {"key": "C", "beats_per_bar": 4.0, "bpm": 90}
     events, markers, bar = [], [], 0
+    tie_spans = []                    # [(原小节, 新小节, 接过去的拍数)]，见下
     got_meta = False
 
     for lineno, raw in enumerate(text.splitlines(), start=1):
@@ -259,6 +260,12 @@ def parse_jianpu(text):
             if tok == "-":                              # 增时线：延长前一个音
                 if not events:
                     raise JianpuError(f"第 {lineno} 行的增时线前面没有音")
+                # ⚠️ 连音线跨小节后，增时线会跟在**上一小节**的那个事件屁股后面
+                # （`… 1'// | ~1' - - - |`）。直接 `+= 1.0` 会把整整 3 拍记到
+                # 旧小节头上 —— 校验于是报「第 82 小节 7 拍、第 83 小节 1 拍」。
+                # 增时线长在哪个小节，那 1 拍就属于哪个小节。
+                if bar != events[-1]["bar"]:
+                    tie_spans.append((events[-1]["bar"], bar, 1.0))
                 events[-1]["beats"] += 1.0
                 continue
             if tok.startswith("("):
@@ -277,6 +284,20 @@ def parse_jianpu(text):
                 degs = split_chord(inner, lineno)
                 if not degs:
                     raise JianpuError(f"第 {lineno} 行和弦是空的")
+                if events and events[-1].get("tie"):
+                    # 连音线接在**和弦**上（写法 `… (5 1) | ~(5 1) …`）。
+                    # 与单音同一条规则：只有两端音**完全一样**才合并，时值相加，
+                    # 跨小节时那部分时值归新小节（靠 tie_spans 在校验时挪回去）。
+                    prev = events[-1]
+                    if prev["degs"] != degs:
+                        raise JianpuError(
+                            f"第 {lineno} 行连音线两端的和弦不一样 —— `~` 只把"
+                            f"**同一组音**接起来")
+                    prev.pop("tie")
+                    if bar != prev["bar"]:
+                        tie_spans.append((prev["bar"], bar, beats))
+                    prev["beats"] += beats
+                    continue
                 events.append({"degs": degs, "beats": beats, "bar": bar})
                 continue
 
@@ -290,6 +311,12 @@ def parse_jianpu(text):
                 if not deg:
                     raise JianpuError(f"第 {lineno} 行连音线后面接的是休止，无法合并")
                 if len(prev["degs"]) == 1 and prev["degs"][0] == (deg, acc, oct_shift):
+                    # ⚠️ 连音线**跨小节**时（写法是 `… 3/ | ~3 2 …`，小节线写在
+                    # 接音之前），接过来的那部分时值其实属于**新小节**。合并后
+                    # 它挂在旧小节的那个事件上，会让「每小节拍数」校验把旧小节
+                    # 算多、新小节算少 —— 所以单独记一笔，校验时挪回去。
+                    if bar != prev["bar"]:
+                        tie_spans.append((prev["bar"], bar, beats))
                     prev["beats"] += beats
                     continue
                 raise JianpuError(
@@ -308,6 +335,10 @@ def parse_jianpu(text):
         per = [0.0] * total_bars
         for e in events:
             per[e["bar"]] += e["beats"]
+        for b_from, b_to, beats in tie_spans:            # 连音线跨小节：时值归新小节
+            per[b_from] -= beats
+            if b_to < total_bars:
+                per[b_to] += beats
         for i, got in enumerate(per[:-1]):               # 最后一小节允许不完整
             if abs(got - meta["beats_per_bar"]) > EPS:
                 problems.append(f"第 {i + 1} 小节是 {got:g} 拍，拍号要求 {meta['beats_per_bar']:g} 拍")
@@ -552,6 +583,46 @@ def cap_holds(cells, holds, total, unit_ms, hold_mode):
     return out, too_tight
 
 
+# ---------------------------------------------------------------- 多声部叠加
+
+def merge_voices(voice_cells, voice_holds, voice_totals, voice_marks):
+    """
+    把若干条**独立声部**按格合并成一份谱面。
+
+    为什么需要它：本工具的单文件格式是**严格顺序**的（一个事件占一段时值），
+    表达不了「上谱表旋律 + 下谱表伴奏」这种两条独立节奏线。所以双谱表的谱子
+    拆成两个文件各写各的，再用这里按格叠起来 —— 同格出现的音取**并集**
+    （变成和弦，播放器会同时按下），按住时长取**最大值**（最长的那根说了算，
+    之后还会被 cap_holds 按「到下一个发声格」钳一遍）。
+
+    前提：所有声部的 `unit` 必须相同（同一张谱上取的最小格），移调量也必须
+    是同一个（在 main 里对全部声部的音一起求解），否则两声部会落在不同音高体系。
+    """
+    total = max(voice_totals) if voice_totals else 0
+    cells, holds, marks = {}, {}, {}
+    for vc, vh, vm in zip(voice_cells, voice_holds, voice_marks):
+        for c, ks in vc.items():
+            if c in cells:
+                merged = cells[c] + "".join(k for k in ks if k not in cells[c])
+                cells[c] = "".join(sorted(merged, key=ORDER.index))
+            else:
+                cells[c] = ks
+        for c, h in vh.items():
+            if h > holds.get(c, -1):
+                holds[c] = h
+        for c, text in vm:
+            marks.setdefault(c, [])
+            if text not in marks[c]:
+                marks[c].append(text)
+    mark_at = [(c, t) for c in sorted(marks) for t in marks[c]]
+    return cells, holds, total, mark_at
+
+
+def max_voices(cells):
+    """一格上最多同时按几个键（给报告用；用户实测 5 键都能出声）。"""
+    return max((len(v) for v in cells.values()), default=0)
+
+
 # ---------------------------------------------------------------- 组装成文本
 
 def format_unit_ms(unit, bpm):
@@ -561,11 +632,15 @@ def format_unit_ms(unit, bpm):
 
 
 def build_text(name, meta, unit, unit_ms, cells, holds, total, mark_at,
-               hold_mode, speed, source_name, st, T, pc_group):
-    """拼出最终文件内容（不含末尾换行，由调用方补）。"""
+               hold_mode, speed, source_name, st, T, pc_group, voices=None):
+    """拼出最终文件内容（不含末尾换行，由调用方补）。
+
+    voices = [(声部名, 该声部文件名, Placement), ...]；None 表示单声部。
+    """
     per_bar = meta["beats_per_bar"] / unit
     note_names = ("十六分", "三十二分", "六十四分")
     idx = GRID_CANDIDATES.index(unit) if unit in GRID_CANDIDATES else 0
+    sources = source_name if isinstance(source_name, str) else " + ".join(source_name)
 
     head = [
         f"#{speed:g}倍速",
@@ -576,10 +651,17 @@ def build_text(name, meta, unit, unit_ms, cells, holds, total, mark_at,
         f"每小节 {per_bar:g} 格",
         f"#  移调 {T:+d} 半音（阶段 1 选到的音级 {pc_group}）→ "
         f"全曲落白键；按住时长 = 本音自己的时值 − {GAP}ms",
-        f"#  由 获取谱子/jianpu_to_score.py 从 {source_name} 生成，改谱请改简谱",
-        f"#  音数 {st.total}｜吸附走音 {st.off_key}｜挪八度 {st.folded}｜丢弃 {st.lost}",
-        "#" + "=" * 62,
+        f"#  由 获取谱子/jianpu_to_score.py 从 {sources} 生成，改谱请改简谱",
     ]
+    if voices and len(voices) > 1:
+        head.append(f"#  {len(voices)} 个声部按格叠加（同格取并集 = 和弦）："
+                    + " / ".join(f"{n}：音 {s.total} 走音 {s.off_key} "
+                                 f"挪八度 {s.folded} 丢 {s.lost}"
+                                 for n, _f, s in voices))
+    else:
+        head.append(f"#  音数 {st.total}｜吸附走音 {st.off_key}｜"
+                    f"挪八度 {st.folded}｜丢弃 {st.lost}")
+    head.append("#" + "=" * 62)
     if hold_mode == "none":
         head[4] = (f"#  移调 {T:+d} 半音（阶段 1 选到的音级 {pc_group}）→ 全曲落白键；"
                    f"不写按住时长，播放器用默认 {HOLD_MIN}ms")
@@ -733,8 +815,13 @@ def build_parser():
         epilog="例：\n"
                "  python 获取谱子/jianpu_to_score.py 我的简谱.txt\n"
                "  python 获取谱子/jianpu_to_score.py 我的简谱.txt --bpm 120 --dry-run\n")
-    ap.add_argument("jianpu", help="简谱文本文件（UTF-8）")
-    ap.add_argument("-o", "--out", help="输出路径（默认 scores/<输入文件名>.txt）")
+    ap.add_argument("jianpu", help="主声部简谱文本文件（UTF-8）")
+    ap.add_argument("--overlay", action="append", metavar="另一声部.txt",
+                    help="再叠一个声部（可重复）。各声部共用同一个移调量（对全部"
+                         "声部的音一起求解），格不同会自动齐到最细的那套；"
+                         "同格出现的音取并集变成和弦 —— 用来做「上谱表旋律 + 下谱表"
+                         "伴奏」这种双声部简谱。")
+    ap.add_argument("-o", "--out", help="输出路径（默认 scores/<主声部文件名>.txt）")
     ap.add_argument("--bpm", type=int, help="覆盖简谱首行写的 BPM（BPM 按四分音符计）")
     ap.add_argument("--speed", type=float, default=1.0,
                     help="写进首行的倍速（默认 1.0；与曲谱生态一致，实际播放间隔 ÷ 倍速）")
@@ -749,43 +836,84 @@ def build_parser():
     return ap
 
 
+def load_voice(path):
+    """读一个简谱文件 → (meta, events, markers, unit, problems)。"""
+    text = Path(path).read_text(encoding="utf-8-sig")      # utf-8-sig：容忍记事本加的 BOM
+    return parse_jianpu(text)
+
+
 def main(argv=None):
     args = build_parser().parse_args(argv)
-    src = Path(args.jianpu)
-    if not src.is_file():
-        print(f"找不到简谱文件：{src}")
-        return 2
 
-    # utf-8-sig：容忍被记事本加了 BOM 的简谱
-    text_in = src.read_text(encoding="utf-8-sig")
-    try:
-        meta, events, markers, unit, problems = parse_jianpu(text_in)
-    except JianpuError as e:
-        print(f"简谱解析失败：{e}")
-        return 2
+    spec = [Path(args.jianpu)] + [Path(p) for p in (args.overlay or [])]
+    for p in spec:
+        if not p.is_file():
+            print(f"找不到简谱文件：{p}")
+            return 2
 
-    if not events:
-        print("简谱里没有解析到任何音符，请检查格式（见文件头 docstring）")
-        return 2
+    voices = []
+    for p in spec:
+        try:
+            meta_v, events, markers, unit_v, problems = load_voice(p)
+        except JianpuError as e:
+            print(f"简谱解析失败（{p.name}）：{e}")
+            return 2
+        if not events:
+            print(f"{p.name} 里没有解析到任何音符，请检查格式（见文件头 docstring）")
+            return 2
+        voices.append({"path": p, "meta": meta_v, "events": events,
+                       "markers": markers, "unit": unit_v, "problems": problems})
+
+    meta = voices[0]["meta"]
+    # 各声部「自己最少需要多细的格」可以不同：旋律有 32 分音符就得 1/32 拍，
+    # 伴奏全是 8 分就只要 1/4 拍。在同一张谱上它们本来就共用同一个最小格，
+    # 记谱简省不是另一张谱 —— 所以叠加时统一齐到**最细**的那一套。
+    unit = min(v["unit"] for v in voices)
     if args.bpm:
         meta["bpm"] = args.bpm
+
+    # --- 声部之间共用同一个移调量；格不同就齐到最细的 ---
+    for v in voices[1:]:
+        if abs(v["unit"] - unit) > EPS:
+            print(f"  注：{v['path'].name} 自己只需 {v['unit']:g} 拍的最小格，"
+                  f"叠加时齐到最细的 {unit:g} 拍")
+        if (v["meta"]["key"] != meta["key"]
+                or abs(v["meta"]["beats_per_bar"] - meta["beats_per_bar"]) > EPS):
+            print(f"  !! {v['path'].name} 的调号/拍号（{v['meta']['key']} "
+                  f"{v['meta']['beats_per_bar']:g}/4）与主声部（{meta['key']} "
+                  f"{meta['beats_per_bar']:g}/4）不同 —— 按主声部处理")
+        if v["meta"]["bpm"] != meta["bpm"]:
+            print(f"  !! {v['path'].name} 的 BPM（{v['meta']['bpm']}）"
+                  f"与主声部（{meta['bpm']}）不同 —— 按主声部处理")
+
     speed = args.speed if args.speed > 0 else 1.0
-
-    # --- 移调 + 落键 ---
-    raw = [raw_pitch(d, a, o, KEY_PC[meta["key"]])
-           for e in events for d, a, o in e["degs"]]
-    T, pc_group, _ = choose_transpose(raw, args.max_fold)
-    keys_per_event, st = solve_keys(events, KEY_PC[meta["key"]], T, args.max_fold)
-
     unit_ms = format_unit_ms(unit, meta["bpm"])
 
-    # --- 打格 + 钳制 ---
-    cells, holds, total, mark_at = render(events, keys_per_event, markers, unit, unit_ms)
+    # --- 移调：对**全部声部**的音一起求解，两声部才落在同一音高体系 ---
+    all_raw = [raw_pitch(d, a, o, KEY_PC[v["meta"]["key"]])
+               for v in voices for e in v["events"] for d, a, o in e["degs"]]
+    T, pc_group, _ = choose_transpose(all_raw, args.max_fold)
+
+    # --- 各声部分别落键、打格，再按格叠加 ---
+    v_cells, v_holds, v_totals, v_marks, infos = [], [], [], [], []
+    for v in voices:
+        keys_per_event, st_v = solve_keys(v["events"], KEY_PC[v["meta"]["key"]],
+                                         T, args.max_fold)
+        cells_v, holds_v, total_v, mark_v = render(v["events"], keys_per_event,
+                                                   v["markers"], unit, unit_ms)
+        v_cells.append(cells_v)
+        v_holds.append(holds_v)
+        v_totals.append(total_v)
+        v_marks.append(mark_v)
+        infos.append(st_v)
+
+    cells, holds, total, mark_at = merge_voices(v_cells, v_holds, v_totals, v_marks)
     if not args.no_pad:
         per_bar = int(round(meta["beats_per_bar"] / unit))
         pad = (-total) % per_bar
         if pad:
             total += pad
+
     final_holds, too_tight = cap_holds(cells, holds, total, unit_ms, args.hold)
     if args.hold == "none":
         final_holds = {}
@@ -794,35 +922,56 @@ def main(argv=None):
                   f"{HOLD_MIN}ms 按住，比格子还长，密集处会逐行累积迟到"
                   f"（要精确按住就用默认的 --hold own）")
 
-    name = src.stem
-    head_T = T
-    body = build_text(name, meta, unit, unit_ms, cells, final_holds, total, mark_at,
-                      args.hold, speed, src.name, st, head_T, pc_group)
+    # ⚠️ 汇总必须新建对象：st = infos[0] 再 += 会把第 1 声部自己的统计也改掉
+    st = Placement()
+    for s in infos:
+        st.total += s.total
+        st.off_key += s.off_key
+        st.folded += s.folded
+        st.lost += s.lost
+        st.lost_examples.extend(s.lost_examples)
+    st.lost_examples = st.lost_examples[:8]
+    voice_info = [("主声部（第 1 个文件）", voices[0]["path"].name, infos[0])] + [
+        (f"叠加声部 {i + 1}", voices[i + 1]["path"].name, infos[i + 1])
+        for i in range(len(infos) - 1)
+    ] if len(voices) > 1 else None
+
+    body = build_text(voices[0]["path"].stem, meta, unit, unit_ms, cells,
+                      final_holds, total, mark_at, args.hold, speed,
+                      [str(v["path"].name) for v in voices] if len(voices) > 1
+                      else voices[0]["path"].name,
+                      st, T, pc_group, voice_info)
     out_text = "\n".join(body) + "\n"
 
     # --- 报告 ---
     note_names = ("十六分", "三十二分", "六十四分")
-    print(f"简谱 {src.name}：{len(events)} 个事件"
-          f"（{sum(1 for e in events if e['degs'])} 个发声 / "
-          f"{sum(1 for e in events if not e['degs'])} 个休止）")
+    for i, v in enumerate(voices):
+        n_sing = sum(1 for e in v["events"] if e["degs"])
+        n_rest = len(v["events"]) - n_sing
+        print(f"声部 {i + 1} {v['path'].name}：{len(v['events'])} 个事件"
+              f"（{n_sing} 发声 / {n_rest} 休止）"
+              f"｜音数 {infos[i].total} 走音 {infos[i].off_key} "
+              f"挪八度 {infos[i].folded} 丢 {infos[i].lost}")
     print(f"调号 1={meta['key']} {meta['beats_per_bar']:g}/4 {meta['bpm']} BPM"
           f" → 格 = {note_names[GRID_CANDIDATES.index(unit)]} = {unit_ms}ms"
           f"（约 {60000 / (unit_ms * (1 / unit)):.0f} BPM）")
-    print(f"移调 {T:+d} 半音（音级 {pc_group}）｜吸附走音 {st.off_key}/{st.total}"
+    print(f"移调 {T:+d} 半音（音级 {pc_group}）｜合计 吸附走音 {st.off_key}/{st.total}"
           f"｜挪八度 {st.folded}｜丢弃 {st.lost}")
     if st.off_key:
         print(f"  走音是琴的物理限制（21 键无升降号）：临时升降号只能吸附到最近的白键")
     if st.lost:
-        print(f"  !! 有 {st.lost} 个音折 {args.max_fold} 个八度仍放不下、只能丢弃"
+        print(f"  !! 合计 {st.lost} 个音折 {args.max_fold} 个八度仍放不下、只能丢弃"
               f"（样例 {st.lost_examples[:4]}）——调大 --max-fold 可以少丢")
     if too_tight and args.hold != "none":
         print(f"  !! {len(too_tight)} 格的时值短于按住下限 {HOLD_MIN}ms，"
               f"按住会被下限顶到略超出格子（格 {unit_ms}ms 太密）")
-    for p in problems:
-        print(f"  !! 拍数：{p}")
+    for v in voices:
+        for p in v["problems"]:
+            print(f"  !! 拍数（{v['path'].name}）：{p}")
     print(f"共 {total} 格 = {sum(1 for c in cells if c < total)} 个发声格 / "
           f"{total - len(cells)} 个休止格｜"
-          f"时长 {total * unit_ms / 1000:.1f}s")
+          f"时长 {total * unit_ms / 1000:.1f}s"
+          f"｜单格最多同时按 {max_voices(cells)} 键")
 
     # --- 自检：先写临时文件让 parser 读回来对账 ---
     tmp = Path(tempfile.gettempdir()) / f"jianpu_check_{out_text.__hash__() & 0xFFFFFF}.txt"
@@ -854,7 +1003,7 @@ def main(argv=None):
         print("--dry-run：产物未落盘。")
         return 0
 
-    out = Path(args.out) if args.out else SCORES / f"{src.stem}.txt"
+    out = Path(args.out) if args.out else SCORES / f"{voices[0]['path'].stem}.txt"
     out.parent.mkdir(parents=True, exist_ok=True)
     if out.exists():
         bak = out.with_suffix(out.suffix + ".bak")
