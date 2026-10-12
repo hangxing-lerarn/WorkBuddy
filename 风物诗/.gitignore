@@ -1,0 +1,10 @@
+# 构建产物与本地垃圾（不要提交）
+dist/
+build/
+_回收/
+__pycache__/
+*.pyc
+
+# 桌面端 IDE / 编辑器
+.vscode/
+.idea/

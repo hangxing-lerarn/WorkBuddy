@@ -1,0 +1,15 @@
+# 风物诗（原神乐谱工具箱）的界面依赖
+#
+# 注意：这四个包是**装在你的日常 Python 里**的（不是打包器环境）。
+#   python -m pip install -r 风物诗/requirements.txt
+#
+# 工具脚本本身（识谱.py / jianpu_to_score.py / midi_to_score.py …）
+# 是零第三方依赖的纯标准库，只有下面这些界面/打包相关的东西需要装。
+
+customtkinter>=6.0.0
+pillow>=10.0.0
+numpy>=1.24
+keyboard>=0.13.5
+
+# 打包成 exe 时才需要（见 风物诗/打包说明.md）：
+# pyinstaller>=6.0

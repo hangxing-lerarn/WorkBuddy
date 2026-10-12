@@ -1,0 +1,74 @@
+风物诗 自检报告
+生成时间：2026-10-12 17:24:09
+版本：0.1.0
+
+====================================================================
+一、运行环境
+====================================================================
+Python：3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+平台：Windows 11
+架构：AMD64
+打包运行(frozen)：True
+sys.executable：C:\Users\HUAWEI\AppData\Local\Programs\风物诗\风物诗.exe
+应用目录(APP_DIR)：C:\Users\HUAWEI\AppData\Local\Programs\风物诗
+工作目录(cwd)：c:\Users\HUAWEI\Desktop\original-guitar-tool-master
+
+====================================================================
+二、依赖
+====================================================================
+  ✓ customtkinter  6.0.0                  界面框架
+  ✓ PIL            12.3.0                 图片处理
+  ✓ numpy          2.5.3                  背景生成/数值
+  ✓ keyboard                              模拟按键（弹琴要）
+  ✓ darkdetect     0.8.0                  主题探测
+  ✓ tkinter        8.6                    Windows 自带
+
+====================================================================
+三、目录
+====================================================================
+数据目录(文档\风物诗)：C:\Users\HUAWEI\Documents\风物诗
+缓存目录(LOCALAPPDATA)：C:\Users\HUAWEI\AppData\Local\风物诗
+实际生效的数据目录：C:\Users\HUAWEI\Documents\风物诗
+  scores   C:\Users\HUAWEI\Documents\风物诗\scores，72 个条目
+  jianpu   C:\Users\HUAWEI\Documents\风物诗\简谱，79 个条目
+  base     C:\Users\HUAWEI\Documents\风物诗\change_base，2 个条目
+  no       C:\Users\HUAWEI\Documents\风物诗\change_base\no，0 个条目
+  yes      C:\Users\HUAWEI\Documents\风物诗\change_base\yes，0 个条目
+  out      C:\Users\HUAWEI\Documents\风物诗\产物，0 个条目
+
+====================================================================
+四、工具脚本
+====================================================================
+获取谱子 目录：C:\Users\HUAWEI\AppData\Local\Programs\风物诗\获取谱子
+仓库根(推导)：C:\Users\HUAWEI\AppData\Local\Programs\风物诗
+  ✓ jianpu_to_score.py     49.3 KB
+  ✓ midi_to_score.py       46.8 KB
+  ✓ retime.py              13.3 KB
+  ✓ add_hold.py            10.2 KB
+  ✓ verify_original.py     8.7 KB
+  ✓ 字母谱转谱.py               13.5 KB
+  ✓ 字母谱对账.py               7.1 KB
+  简谱识谱/(存在)
+    ✓ 识谱.py            219.8 KB
+    ✓ imgio.py         11.8 KB
+    ✓ audit.py         18.5 KB
+    ✓ 字模.json          43.5 KB
+  ✓ parser.py              C:\Users\HUAWEI\AppData\Local\Programs\风物诗\parser.py
+  ✓ player.py              C:\Users\HUAWEI\AppData\Local\Programs\风物诗\player.py
+
+====================================================================
+五、配置落盘
+====================================================================
+配置文件：C:\Users\HUAWEI\AppData\Local\风物诗\settings.json
+写盘模式：unknown（本次还没写过）
+试写结果：通过 ✓
+回读校验：accent=紫 font_scale=1.0
+
+====================================================================
+六、环境变量覆盖
+====================================================================
+  FENGWUSHI_DATA_DIR   （未设置）
+  FENGWUSHI_CACHE_DIR  （未设置）
+  FENGWUSHI_SCRIPTS    （未设置）
+
+报告结束。
