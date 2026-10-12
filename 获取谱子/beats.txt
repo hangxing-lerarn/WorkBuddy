@@ -1,0 +1,65 @@
+  1 [标签] 第一段：
+  2 5拍 ER/(ZBDT) EQ/ G(ZNFQ) / W /   /
+  3 4拍 (XMGW) QW/ E(ZBDE) /   / ER/
+  4 4拍 (CAT) EQ/ G(VAQ)W / Q / WE/
+  5 4拍 (XMGR) EW/ Q(ZBDQ) /   / ER/
+  6 4拍 (ZBT) EQ/ G(ZVT) / Y /  Y/
+  7 4拍 (CU)M(DY)(JU) / Q(CNGQ) / M /A ER/
+  8 4拍 (XNT) EQ/ G(VNW) / Q / WE/
+  9 4拍 (BSFR) RE/WQ(ZBDQ) /   / GQT /
+ 10 4拍 (VHR) N /F (ZBDE) /   /Q  /
+ 11 [标签] 第二段：
+ 12 4拍 (ZVDT) /(AD)RER /(ADE) W/(AD) Q /
+ 13 4拍 (CBGT) /(DGQ) EY /(DGT) /(DG) Q /
+ 14 4拍 (XNT) /(SF)RER /(SDE) (SW)/ (AQ) /
+ 15 4拍 (BMT) S /G (SQ)J/(CBAQ) /(BM) Q /
+ 16 4拍 (ZVHY) A /D A /(CBT) S /(GJU) S /
+ 17 4拍 (NDQ) UY/(XB)TQ /(VN) / WE/
+ 18 4拍 (ZVR) A /(DHR)E(AR)T /(CB)Q(SQ)/G SQ/
+ 19 4拍 (ZVY) (AT)R/FE(AR)T /(XB) (XBS) /(XBQ) (XBS) /
+ 20 2拍 (XGJ)/J Q/
+ 21 [标签] 副歌：
+ 22 4拍 (ZBQ)/A(SG) / (AG) /(SGQ) (AW) /
+ 23 4拍 (BM)/M(SGW)E/R (ME)W/(SG)Q(MQ) /
+ 24 4拍 (CN)/A(DG)E/R (AE)W/(DG)QAT /
+ 25 4拍 (XM) /(SE) (XBQ) / X /(SG) (XH) /
+ 26 4拍 (ZV)/N(ADQ)Q/Q (NJ)H/(AD)G(NG) /
+ 27 4拍 (CB)/M SG/G (MF)D/SGMQ /
+ 28 4拍 (XV) G /(NG) (AD)F/ (XD)S/N XA/
+ 29 4拍 (XBQ) G /(MG) (VNAD)F/ (NW) /(ASGJ) Q /
+ 30 [标签] 间奏：
+ 31 4拍 /(XNFY) /(CBSE) R/ T /
+ 32 4拍 (VAY)/T R /(XBQ) (BA)S/(AD) FBG/
+ 33 4拍 (BH) JSQ/(GW) ESR/(BSJW) /   /
+ 34 2拍 (ZBFJ)REQ /(GQ)FDA /
+ 35 [标签] 第三段：
+ 36 4拍 (ZVT) N /(AG)R(NE)R /(AGE) NW/(AG) (NQ) /
+ 37 4拍 (CBG) (MW)E/(SGR) (ME) /(SGW) M /(SG) (MQ) /
+ 38 4拍 (XVT) N /(SF)R(NE)R /EXN(SW) / (XQ) /
+ 39 4拍 (XBT) S /G S /(BGE) (SR) /(BHT) (SQ) /
+ 40 4拍 (ZVY) A /D A /(CBT) M /(GJU) M /
+ 41 4拍 (NDQ) UY/(BS)TQ /(VNA) / WE/
+ 42 4拍 (ZVR) A /(CNR)E(AR)T /(CB)Q(MQ) /(SG) MQ/
+ 43 4拍 (ZVY) (AT)R/(FH)E(AR)T /(XB) (XBS) /(XBQ) (XBS) /
+ 44 2拍 (XGJ)/J Q/
+ 45 [标签] 副歌：
+ 46 4拍 (ZDGQ) B /(AG) B /(AD) (BG) /(AGQ) (BW) /
+ 47 4拍 M B /(SG) (MW)E/(SGR) (ME)W/(SG)Q(MQ) /
+ 48 4拍 N C /(AD) NE/(ADR) (NE)W/(AD)QNT /
+ 49 4拍 (BM) B /(MSE) (BQ) /(ZB) Z /(ADG) (ZH) /
+ 50 4拍 (ZV) V /(AD) (VQ)Q/(ADQ) (VJ)H/(AD)G(VG) /
+ 51 4拍 (CB) B /(MS) BG/(MSG) (BF)D/(MS)GBQ /
+ 52 4拍 (XV) (VG) /(NSG) (XD)F/(NS) (XD)S/N (XA) /
+ 53 4拍 (XBQ) (BG) /(MSG) (BD)F/M (BD)S/(BM)AB /
+ 54 [标签] 重复副歌：
+ 55 4拍 (ZBQ) A /(DG) A /(AD) (AG) /(DGQ) (AW) /
+ 56 4拍 M B /(SG) (MW)E/(SGR) (ME)W/(CB)Q(MQ) /
+ 57 4拍 N C /(AD) NE/(ADR) (NE)W/(AD)QNT /
+ 58 4拍 (BM) B /(MSE) (BQ) /(ZB) Z /(ADG) (ZH) /
+ 59 4拍 (ZV) V /(AD) (VQ)Q/(ADQ) (VJ)H/(AD)GVW /
+ 60 4拍 (CB) (BJ) /(MSJ) (BQ) /(CN) C /(ADG) (CQ) /
+ 61 4拍 (XV) (VG) /(NSG) (XD)F/(NS) (XD)S/N XA/
+ 62 4拍 (XBQ) (BG) /(MSG) (BD)F/(XSFH) W /J Q /
+ 63 4拍 (ZAGE) /(GQE) /(FHWR) (FQE)/ (FJW) /
+ 64 4拍 /(ZAGQE) /   /   /
+总计 223 拍

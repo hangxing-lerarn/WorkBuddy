@@ -1,0 +1,52 @@
+call of silence（进击的巨人，♩=62）
+前奏：
+0/0/0/Y Q/
+(Z E F)/-/(X G)/U Q/
+(C H W)/-/-/(X G). Q J/
+(Z F H)/-/(X G W)/-/
+第一段：
+(C H Q)/-/-/(G X). Y Q/
+(Z E F) N/(D A)/(G X) M/(G X). U Q/
+(C N W) Z/(C N Q) Z/-/(D A). Q W/
+(F Z W) (N Q)/(D A) -/(G X) M/(G X). Y W/
+(N C) Z/(D N Q)/~Q -/-/
+(G Z)/-/-/(N C). Y E/
+(C D N) -/(F Z). E U/~U -/-/
+(N C Y) A/Z/-/Y E/
+(C D N) -/- E U/(G X)/-/
+(F Z Q) E/~E -/(G X)/(G X). Y D/
+(C D N) -/- E U/~U -/-/
+(C N Q) (Z T)/(C N) Z/(D A)/(G X T). E T/
+间奏：
+(F Z) N/(D A)/(G X) M/(G X W). Q W/
+(C N W). Z Q/(C N H) -/(D A)/(G X)/
+(N Z U) U W U/~U U E U/~U Q E Q/(N X Q) ~Q E Q/
+(G Z Q) W E W/~W W E W/W E T E/(C G E) ~E T E/
+(X F N Y). E Y/~Y Y E Y/~Y Y E T/(X G T) R E W/
+(X F Z W) W E W/~W W E W/W E T E/(X G E) Q E Q/
+(X G Y) Q Y W/0 Q E Q/~Q Q E Q/(Z G Q) ~Q E Q/
+(C G Q) W E W/~W W E W/W E T E/(Z G E) ~E T E/
+(X F N T). W T/T W T W/0 T W T/0 T W T/
+(X F Z T) ~T W T/~T T W T/~T T W T/(X G T) ~T W T/
+(X G T) ~T W T/~T T W T/~T T W T/~T T W T/
+~T 0. Z X/X M Z X/G. Z X/X M E W/
+人声：
+(F Z W) (N Q)/(D A Q). V/(G X Q) M/(G X). U Q/
+(N C) Z/(N C) Z/(D Z) Z N X/(G X E) W/
+(F Z W) (N Q)/(D A T)/(G X W) M/(G X). E Q/
+(N C) Z/(N C) Z/(D Z) Z N X/(G X E) W/
+(F Z W) (N Q)/(D A Q). V/(G X T) M/(G X). W Q/
+(N C) Z/(N C) Z/(D Z) Z N X/(G X E) W/
+(F Z W) N/(D A). W Q/(G X W) (E M)/(G X W) W/
+~W (C N) (Q Z)/(N C) Z Q. Q/(D Z U) Z N X/(G X). E Y/
+(F Z) N/(D A) -/(G X) 0. Q U/(G X E) Q/
+(N C) Z/(A N) Z/(D A) 0. Q U/(G X E) Y/
+(F Z Y) N/(D A). Y U/(G X U) M/(G X)/
+(C N) Z W Q/(C N) Z/(D A) 0. Q U/(G X E) Y/
+(F Z) N/(D A) -/(G X) 0. Q U/(G X E) Q/
+(N C) Z/(A N) Z/(D A) 0. Q U/(G X Q) W/
+(F Z) N W. E/(D A) E. -/(G X) M/(G X) -/
+(C N Q) (M U)/~U (Z C)/(M B)/B/
+尾声：
+(N C) M/(Z C)/(M B)/B/
+(ZND)
