@@ -910,6 +910,27 @@ def main(argv=None):
     speed = args.speed if args.speed > 0 else 1.0
     unit_ms = format_unit_ms(unit, meta["bpm"])
 
+    # ---- 格细于播放器的「按住下限」：这是系统性警报，不是「有一点密」 ----
+    # `cap_holds` 的上限 cap = 到下一个**发声格**的间隔 − GAP，下限是 HOLD_MIN=50ms。
+    # 格本身一旦短于 50ms，`max(HOLD_MIN, min(nominal, cap))` 就必然被下限顶住，
+    # 凡有相邻发声格处每格都超格，迟到**逐行累积**（实测 801 BPM ⇒ 19ms 格 ⇒ 20803ms）。
+    #
+    # 两种成因的报法必须分开，否则会把「首行 BPM 读错」误诊成「谱面太密」：
+    #   · unit 是**二进制格**（十六分 / 三十二分 / 六十四分）—— 正常 BPM 下不可能
+    #     这么细（1/16 要 >300、1/32 要 >150 BPM）⇒ 几乎总是**首行 BPM 读错**
+    #     （识谱把 ♩=80 认成 801 就是这样：188ms 的格变成 19ms）。
+    #     → 直接中止，别让一份「迟到 20 秒」的谱子走到落盘那一步才报。
+    #   · unit 是**三连音格**（1/6 / 1/12 / 1/24）—— 网格精度天然细于 50ms，属正常
+    #     （本仓 50 份交付件里二进制格最细只到 1/8、无一触发上面那条）。照常继续，
+    #     实际迟到量由自检如实报出。
+    if unit_ms < HOLD_MIN and unit in GRID_CANDIDATES[:3] and not args.force:
+        print(f"  !! 首行 BPM 可疑：{meta['bpm']} BPM 配二进制格"
+              f"（{GRID_NAMES[GRID_CANDIDATES.index(unit)]}）只有 {unit_ms}ms，"
+              f"短于播放器的按住下限 {HOLD_MIN}ms。")
+        print(f"     正常 BPM 下二进制格不可能这么细 ⇒ 按住会被下限顶住、迟到会逐行累积。"
+              f"请核对简谱首行的 BPM，或用 --bpm 覆盖；确认无误可加 --force 强制继续。")
+        return 1
+
     # --- 移调：对**全部声部**的音一起求解，两声部才落在同一音高体系 ---
     all_raw = [raw_pitch(d, a, o, KEY_PC[v["meta"]["key"]])
                for v in voices for e in v["events"] for d, a, o in e["degs"]]
@@ -984,8 +1005,17 @@ def main(argv=None):
         print(f"  !! 合计 {st.lost} 个音折 {args.max_fold} 个八度仍放不下、只能丢弃"
               f"（样例 {st.lost_examples[:4]}）——调大 --max-fold 可以少丢")
     if too_tight and args.hold != "none":
-        print(f"  !! {len(too_tight)} 格的时值短于按住下限 {HOLD_MIN}ms，"
-              f"按住会被下限顶到略超出格子（格 {unit_ms}ms 太密）")
+        print(f"  !! {len(too_tight)} 格的按住被下限 {HOLD_MIN}ms 顶住、会略超出格子"
+              f"（格 {unit_ms}ms）")
+        if unit_ms < HOLD_MIN and unit in GRID_CANDIDATES[:3]:
+            print(f"     二进制格比按住下限还短，只可能是首行 BPM 读错"
+                  f"（当前 {meta['bpm']} BPM）—— 请核对，或用 --bpm 覆盖")
+        elif unit_ms < HOLD_MIN:
+            print(f"     三连音细格的网格精度天然比按住下限还短，属正常；"
+                  f"实际迟到量见下方自检")
+        else:
+            print(f"     格本身不细，是相邻发声格挨得比按住下限还近（正常的密集段）；"
+                  f"实际迟到量见下方自检")
     for v in voices:
         for p in v["problems"]:
             print(f"  !! 拍数（{v['path'].name}）：{p}")

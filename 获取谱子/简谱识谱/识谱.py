@@ -3590,6 +3590,13 @@ def read_sections(pg, log):
     return out
 
 
+# 页眉速度的合理范围：超出即判为误读。这是**兜底**，主防线在 read_head 里
+# （速度只从原始识别串取，绝不让「括号当数字」的补救参与）。
+# 实测它能救的坑：页眉 `♩=80` 被读成 `801` —— 801 BPM ⇒ 格 19ms < 按住下限
+# 50ms ⇒ 逐行累积迟到 20803ms。
+TEMPO_LO, TEMPO_HI = 20, 320
+
+
 def read_head(pg, log):
     """第 1 页左上角 `1=C` + 竖排 `4/4` + `♩=91`。"""
     S = pg.S
@@ -3637,24 +3644,36 @@ def read_head(pg, log):
     s = "".join(p[1] for p in parts)
     # 页眉区**结构上不可能出现括号**，所以这里的 `(` / `)` 必然是把细体数字看错
     # （页眉的音符符号比正文略宽，`1` 在 14×18 网格下与 `(` 的 L1 距离只差 4）。
-    # 于是把括号当「数字」再试一遍。
+    # 于是把括号当「数字」再试一遍 —— **但这张补救网只用来救调号 / 拍号**。
+    #
+    # ⚠️ 补救**绝不能**参与速度的读数。页眉右侧常有说明文字（如 `原调: F`），其中
+    #    的 `:` 实测会被认成 `)`（《别让我担心》dist 52.8，它只有 8×6 像素）；一旦
+    #    按「括号当数字」替换成 `1`，`♩=80` 的识别串 `…=80)` 就变成 `…=801` ——
+    #    速度被无声放大 10 倍。后果：801 BPM ⇒ 格 188ms→19ms，小于播放器的按住
+    #    下限 50ms ⇒ `cap_holds` 被下限顶住、迟到逐行累积 20803ms。
+    #    ⇒ 速度一律从**原始串**取，且容忍尾部夹着**一个**被误认成括号的字。
     cands = [s]
     if "(" in s or ")" in s:
         cands.append(s.replace("(", "1").replace(")", "1"))
+    tm = re.search(r"=\s*(\d{1,3})\s*[()\[\]]?\s*$", s)      # ← 只看原始串 s
+    tempo = int(tm.group(1)) if tm else None
+    if tempo is not None and not (TEMPO_LO <= tempo <= TEMPO_HI):
+        log(f"  ⚠ 页眉读出的速度 {tempo} 超出合理范围 {TEMPO_LO}~{TEMPO_HI}，"
+            f"判为误读、本行不写速度（请用 --head 指定）")
+        tempo = None
     best = None
     for cand in cands:
         km = re.search(r"(\d)\s*=\s*([A-Ga-g][#b]?)", cand)
         if not km:
             continue
         bm = re.search(r"(\d)\s*/\s*(\d)", cand)
-        tm = re.search(r"=\s*(\d{1,3})\s*$", cand)
         head = f"{km.group(1)}={km.group(2)}"
         head += f" {bm.group(1)}/{bm.group(2)}" if bm else " 4/4"
-        if tm:
-            head += f" {int(tm.group(1))}"
+        if tempo is not None:
+            head += f" {tempo}"
         if best is None:
             best = (head, cand)
-        if tm:                                    # 认出了速度才停；只认调号不算成功
+        if tempo is not None:                     # 认出了速度才停；只认调号不算成功
             best = (head, cand)
             break
     if best:
