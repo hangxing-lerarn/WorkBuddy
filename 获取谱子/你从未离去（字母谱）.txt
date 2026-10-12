@@ -1,0 +1,71 @@
+你从未离去（♩=72）
+前奏：
+(NDT)QTQ /TQTQ /(VAT)QTQ /TQTQ /
+(ZBT)QTQ /TQTQ /(BST)JTJ /TJTJ /
+(NDT)QTQ /TQTQ /(VAT)QTQ /TQTQ /
+(ZBT)QTQ /TQTQ /(BST)JTJ /TJTJ /
+第一段：
+(CNA) D /D GG/(ZV)A. /~A/
+(ZB) DD/D DD/(XB)S. /~S/
+(CNA) D /D GG/(ZV) A /A G /
+(ZB) HG/G DD/(XB)S. /~S/
+(CNA) D /D GG/(ZV)Q  /H G /
+(ZB) HG/G DG/(XB)DS / DSA/
+(ZVA)  /      /   N/AG  /
+(XBG)  /   D /S   /(XB)   /
+(CN) (CD) /(AD) (CG)G/VA.Z /N V /
+Z (BD)D/(AD) (BD)D/B (XS)/M X /
+(CN) (CD) /(AD) (CG)G/V (ZA) /(NA) (VG). /
+G /- E/S -/-  /
+(CN) (CD) /(AD) (CG)G/VQ.Z /(NH) (VG) /
+Z (BH)G/(AG) (BD)G/BD(XS.) /MD(XS)A /
+(ZVBA) Z /V B /  ZN/(VA)GB /
+(XBAG) X /B (XBAG) /  X /(XBD)G  /
+(NQ) C /(AD) (CH)G/(VG) Z.G /(NG) (VA)D/
+ZDB /AF(BD) /(BS) X /(MD) (XG) /
+(NQ) C /(AD) (CH)G/(VG) ZG/(ADQ) (VG).Q/
+Z (BQ) /(ADQ)WBW /B X /(SGQ)Q(XW)Q /
+(NQE) (CQE) /(ADQE) (CQT)(QT)/VQZ /(AD)Q(VW)Q /
+(ZE) (BE). /(ADE) (BR)E/B (XW) /(SG)E(XW)Q /
+(VGQ). A /F G. /  A /GEWQ /
+(BSGW) A /S G /      /(XB)   /
+间奏：
+(NDT)QTQ /TQTQ /(VAT)QTQ /TQTQ /
+(ZBT)QTQ /TQJQ /(BSG)JQG /~G(XB) /
+(NDT)QTQ /TQTQ /(BAT)QTQ /TQTQ /
+(ZBT)QTQ /TQJQ /(BSG)JQG /~G(XB) /
+第二段：
+(CN) (CD) /(AD) (CG)G/VA.Z /N V /
+Z (BD)D/(AD) (BD)D/B (XS)/M X /
+(CN) (CD) /(AD) (CG)G/V (ZA) /(NA) (VG). /
+Z (BH)G/(AG) (BD)G/BD(XS.)/M X /
+(CN) (CD) /(AD) (CG)G/VQ.Z /(NH) (VG) /
+Z (BH)G/(AG) (BD)G/BD(XS.) /MD(XS)A /
+(ZVA) Z /V B /(ZV) ZN/(VA)GB /
+(XBG) X /B (XBAG) /(XB) X /(XBD)G  /
+(CNQ) C /(AD) (CH)G/(ZVG) Z.G /(NG) (VA)D/
+(ZB)DB /AF(BD) /(XBS) X /(MD) (XG) /
+(CNQ) C /(AD) (CH)G/(ZVG) ZG/(ADQ) (VG).Q/
+(ZB) (BQ) /(ADQ)WBW /(XB) X /(SGQ)Q(XW)Q /
+(CNQE) (CQE) /(ADQE) (CT)T/(ZVQ).Z /(AD)Q(VW)Q /
+(ZBE) (BE) /(ADE) (BR)E/(XB) (XW) /(SG)E(XW)Q /
+(ZVGQ) A /F G /V A /GEWQ /
+(BSGW) A /S G /(BS) B /(XBD) G /
+(CNQ) C /(AD) (CH)G/(ZVG) Z.G /(NG) (VA)D/
+(ZB)DB /AF(BD) /(XBS) X /(MD) (XG) /
+(CNQ) C /(AD) (CH)G/(ZVG) ZG/(ADQ) (VG).Q/
+(ZB) (BQ) /(ADQ)WBW /(XB) X /(SGQ)Q(XW)Q /
+(CNQE) (CQE) /(ADQE) (CT)T/(ZV)Q.Z /(AD)Q(VW)Q /
+(ZBE) (BE) /(ADE) (BR)E/(XB) (XW) /(SG)E(XW)Q /
+(ZVQ) A /F G /V A /GEWQ /
+(BSW) A /S G /      /      /
+结尾：
+(NDQ)/-/(VAH)/-/
+(ZBG) -/- E/(BS) -/-/
+(NDQ)/-/(VAH)/-/
+(ZBQ)/-/(BSW)/-/
+(NDE)/-/(VAT)/-/
+(ZBQ)/-/(BSJ)/-/
+(ZVH)/-/-/-/
+(XBJ)/-/-/-/
+(CBAGQ)

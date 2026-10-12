@@ -30,6 +30,7 @@ UTF-8 文本。以 `#` 开头的行是注释（`#` 后面紧跟数字时不算�
     5'      /  5,      高八度 / 低八度（可叠：`5''` 高两个八度）
     5/      /  5//     减时线：八分音符 / 十六分音符（每多一个 `/` 再减半）
     5.      /  5/.     附点：时值 ×1.5（可与减时线叠加）
+    5/*     /  5//*    三连音：时值 ×2/3（`5/*` = 1/3 拍 = 三连音八分），可与上两者叠加
     -                  增时线：把**前一个音**延长一拍（可连写 `- -`）
     #4      /  b7      临时升号 / 降号
     (135)   / (1 3 5)  和弦（同时按下；时值写法跟在括号后面，如 `(135)/`）
@@ -43,11 +44,21 @@ UTF-8 文本。以 `#` 开头的行是注释（`#` 后面紧跟数字时不算�
 
 不支持的写法
 ------------
-· **三连音等非二进制时值**。减时线 `／` 只能二等分，所以时值永远是
-  十六分 / 三十二分 / 六十四分的整数倍；`1/ 1/ 1/` 是**三个八分音符**，
-  不是三连音。真遇到三连音，工具会明确报错而不是糊过去。
 · 一行里同时写多个小节而不加 `|`（拍数校验会因此失灵）。
 · 带升降号的**调号**（`1=#F`）—— 换成它的等音调写，或整体移调后再写。
+
+三连音
+------
+减时线 `/` 只能二等分，所以纯 `/` 的时值永远是十六分 / 三十二分 / 六十四分的整数倍。
+三连音的写法是加一个 `*`（时值 ×2/3）：
+
+    6/* 6/* 6/*        ← 三连音八分音符，三个音共占 1 拍（各 1/3 拍）
+
+`*` 只改**这一个音的时值**，不改变音高、也不影响别的音；写 3 个就凑满一个三连音组。
+一旦谱面里出现 `*`，`render` 会自动把全曲网格细化到 1/12 拍（`GRID_CANDIDATES`
+里排在二进制格之后），所以**不含三连音的谱面一行都不会变**。
+
+⚠️ `1/ 1/ 1/` 是**三个八分音符**（共 1.5 拍），不是三连音 —— 三连音必须写 `*`。
 
 调号与升降号
 ------------
@@ -107,13 +118,18 @@ MAJOR = (0, 2, 4, 5, 7, 9, 11)                 # 大调音阶：级数 1~7 的�
 KEY_PC = {"C": 0, "D": 2, "E": 4, "F": 5, "G": 7, "A": 9, "B": 11}
 
 # ---------------------------------------------------------------- 时值
-GRID_CANDIDATES = (0.25, 0.125, 0.0625)        # 十六分 / 三十二分 / 六十四分（以拍为单位）
+GRID_CANDIDATES = (0.25, 0.125, 0.0625,          # 十六分 / 三十二分 / 六十四分（以拍为单位）
+                   1.0 / 6, 1.0 / 12, 1.0 / 24)  # 三连音格：`*` 后缀（×2/3）用得到
+# ⚠️ 三连音格必须排在二进制格**之后**：`render` 取「所有时值都能整除」的第一个候选，
+#    纯二进制谱面永远轮不到它们 → 老曲子的 unit / 行数一字不变。
+GRID_NAMES = ("十六分", "三十二分", "六十四分",
+              "六分（三连音）", "十二分（三连音）", "二十四分（三连音）")
 GAP = 10                                       # 与 parser.HOLD_GAP_MS 一致
 HOLD_MIN = 50                                  # 与 parser.DEFAULT_HOLD_MS 一致
 EPS = 1e-9
 
 HEAD_RE = re.compile(r"^1\s*=\s*([A-Ga-g])([#b]?)\s*(?:(\d+)\s*/\s*(\d+))?\s*(\d+)?")
-TOKEN_RE = re.compile(r"^([#b]?)([0-7])([',]*)((?:[-/.])*)$")
+TOKEN_RE = re.compile(r"^([#b]?)([0-7])([',]*)((?:[-/.*])*)$")
 DEG_RE = re.compile(r"([#b]?)([0-7])([',]*)")
 
 
@@ -162,6 +178,8 @@ def parse_degree_tok(tok, lineno):
             beats /= 2
         elif c == ".":
             beats *= 1.5
+        elif c == "*":
+            beats *= 2.0 / 3.0          # 三连音：把这一格缩到 2/3（`6/*` = 1/3 拍）
     return int(deg), acc, octs.count("'") - octs.count(","), beats
 
 
@@ -281,6 +299,8 @@ def parse_jianpu(text):
                         beats /= 2
                     elif c == ".":
                         beats *= 1.5
+                    elif c == "*":
+                        beats *= 2.0 / 3.0  # 三连音（与 parse_note 口径一致）
                 degs = split_chord(inner, lineno)
                 if not degs:
                     raise JianpuError(f"第 {lineno} 行和弦是空的")
@@ -353,7 +373,8 @@ def parse_jianpu(text):
     if unit is None:
         raise JianpuError(
             "音符时值不是十六分 / 三十二分 / 六十四分音符的整数倍"
-            f"（最小 {smallest:g} 拍）—— 请检查是否写了三连音等非二进制时值")
+            f"（最小 {smallest:g} 拍）—— 三连音要写成 `6/*`（×2/3），"
+            "而不是直接写 1/3 拍")
 
     return meta, events, markers, unit, problems
 
@@ -638,7 +659,7 @@ def build_text(name, meta, unit, unit_ms, cells, holds, total, mark_at,
     voices = [(声部名, 该声部文件名, Placement), ...]；None 表示单声部。
     """
     per_bar = meta["beats_per_bar"] / unit
-    note_names = ("十六分", "三十二分", "六十四分")
+    note_names = GRID_NAMES
     idx = GRID_CANDIDATES.index(unit) if unit in GRID_CANDIDATES else 0
     sources = source_name if isinstance(source_name, str) else " + ".join(source_name)
 
@@ -944,7 +965,7 @@ def main(argv=None):
     out_text = "\n".join(body) + "\n"
 
     # --- 报告 ---
-    note_names = ("十六分", "三十二分", "六十四分")
+    note_names = GRID_NAMES
     for i, v in enumerate(voices):
         n_sing = sum(1 for e in v["events"] if e["degs"])
         n_rest = len(v["events"]) - n_sing

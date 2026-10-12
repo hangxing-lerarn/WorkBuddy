@@ -37,6 +37,15 @@ def _ffmpeg():
 # --------------------------------------------------------------------------
 _PNG_SIG = b"\x89PNG\r\n\x1a\n"
 
+# 彩色掩码：|max(R,G,B) − min(R,G,B)| ≥ 这个值就算「彩色」。
+# 60 能同时收住纯色笔画（红歌词 #FF0000 → 255）和它的抗锯齿边（#FF8C8C → 115），
+# 而把黑色的音符数字（0）与灰度扫描噪声（通常 <20）挡在外面。
+TINT_SAT = 60
+
+
+def _tint_byte(r, g, b):
+    return 1 if (max(r, g, b) - min(r, g, b)) >= TINT_SAT else 0
+
 
 def _paeth(a, b, c):
     p = a + b - c
@@ -79,7 +88,7 @@ def _unfilter(raw, w, h, bpp, stride):
     return out
 
 
-def _png_gray(data):
+def _png_gray(data, want_tint=False):
     if data[:8] != _PNG_SIG:
         raise ValueError("不是 PNG 文件")
     pos, idat, plte, trns = 8, [], None, None
@@ -120,6 +129,9 @@ def _png_gray(data):
 
     # 解包成每像素 (r,g,b)
     out = bytearray(w * h)
+    # 彩色掩码（want_tint）：1 = 原图这个像素有明确色彩。
+    # 灰度图（ctype 0/4）的 tint 恒 0 —— 那种图本来就没有彩色元素可摘。
+    tint = bytearray(w * h) if want_tint else None
 
     def expand_bits(row_bytes):
         vals = []
@@ -140,6 +152,8 @@ def _png_gray(data):
                     i = idx[x] * 3
                     r, g, b = plte[i], plte[i + 1], plte[i + 2]
                     out[y * w + x] = (r * 299 + g * 587 + b * 114) // 1000
+                    if tint is not None:
+                        tint[y * w + x] = _tint_byte(r, g, b)
             else:
                 scale = 255 // ((1 << depth) - 1)
                 for x in range(w):
@@ -155,13 +169,21 @@ def _png_gray(data):
             elif ctype == 2:
                 r, g, b = row[i], row[i + step], row[i + 2 * step]
                 out[y * w + x] = (r * 299 + g * 587 + b * 114) // 1000
+                if tint is not None:
+                    tint[y * w + x] = _tint_byte(r, g, b)
             elif ctype == 6:
                 r, g, b = row[i], row[i + step], row[i + 2 * step]
                 out[y * w + x] = (r * 299 + g * 587 + b * 114) // 1000
+                if tint is not None:
+                    tint[y * w + x] = _tint_byte(r, g, b)
             else:                           # 3 调色板 + 8/16 位索引
                 j = row[i] * 3
                 r, g, b = plte[j], plte[j + 1], plte[j + 2]
                 out[y * w + x] = (r * 299 + g * 587 + b * 114) // 1000
+                if tint is not None:
+                    tint[y * w + x] = _tint_byte(r, g, b)
+    if tint is not None:
+        return bytes(out), bytes(tint), w, h
     return bytes(out), w, h
 
 
@@ -240,6 +262,55 @@ def load_gray(path, raw_size=None):
         f"读不了 {path}：内置解码器只认 PNG / PGM。"
         f"请先另存为 PNG，或让 PIL / ffmpeg 可用。"
     )
+
+
+def load_gray_tint(path, raw_size=None):
+    """同 `load_gray`，但额外返回**彩色掩码**：`(灰度, tint, w, h)`。
+
+    `tint[i] == 1` 表示原图那个像素有明确色彩；`tint is None` 表示这个格式拿不到
+    颜色（裸灰度 / PGM / 本来就是灰度图 / 走 ffmpeg 兜底）。
+
+    为什么需要它：印刷简谱里**歌词、力度记号、指法标注往往是彩色的**，而音符数字
+    是黑的。灰度化之后两者都是「深色墨」，阈值根本分不开 —— Call of Silence 的
+    红歌词（纯 `#FF0000`，灰度 76）整行被当成音符数字，产物里凭空多出 `0` / `5` /
+    `1`，每小节拍数从 4 涨到 5~8，而且 `0`（休止）还被塞进和弦里变成 `(1' 0)`。
+    饱和度是这里唯一可靠的判据：音符是纯黑（差 0），歌词是纯红（差 255）。
+    """
+    if raw_size:
+        g, w, h = load_gray(path, raw_size)
+        return g, None, w, h
+    with open(path, "rb") as fh:
+        head = fh.read(8)
+        fh.seek(0)
+        data = fh.read()
+    if head.startswith(_PNG_SIG):
+        return _png_gray(data, want_tint=True)
+    if head.startswith(b"P5"):
+        g, w, h = _pgm_gray(data)
+        return g, None, w, h
+    r = _rgb_via_pil(path)
+    if r:
+        return r
+    g, w, h = load_gray(path, raw_size)
+    return g, None, w, h
+
+
+def _rgb_via_pil(path):
+    """PNG 之外（jpg / webp…）的颜色来源 —— 只有这条兜底链需要 PIL。"""
+    try:
+        from PIL import Image
+    except ImportError:
+        return None
+    im = Image.open(path).convert("RGB")
+    w, h = im.size
+    px = im.tobytes()
+    gray = bytearray(w * h)
+    tint = bytearray(w * h)
+    for i in range(w * h):
+        r, g, b = px[3 * i], px[3 * i + 1], px[3 * i + 2]
+        gray[i] = (r * 299 + g * 587 + b * 114) // 1000
+        tint[i] = _tint_byte(r, g, b)
+    return bytes(gray), bytes(tint), w, h
 
 
 def ink_threshold(buf, ratio=0.81):
